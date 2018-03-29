@@ -187,3 +187,22 @@ footer>div{
    float:left;
    margin: 0em 10em 1em 0em;
 }
+
+main div:first-child{
+    margin: 1em;
+    text-align: center;
+    font-size:0.77em;
+    background-color:#DDDDDD;
+    height: 40px;
+    
+}
+
+main div>span{
+    position: relative;
+    top:14px;
+    padding:1em 7em 1em 2em;
+}
+
+span span{
+    font-weight: bold;
+}
