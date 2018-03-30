@@ -8,10 +8,16 @@
     <title>Модна дестинация #1</title>
     <link rel="stylesheet" href="assets/styles/reset.css">
     <link rel="stylesheet" href="assets/styles/styles.css">
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+
 
     <script src="js/productService.js"></script>
     <script src="js/cartService.js"></script>
     <script src="js/userService.js"></script>
+
+    <script src="js/controllers/router.js"></script>
+    <script src="js/controllers/loginController.js"></script>
+    <script src="js/controllers/homeController.js"></script>
 </head>
 
 <body>
@@ -34,7 +40,7 @@
             <div>
                 <ul>
                     <li>
-                        <a href=''>
+                        <a href='#login'>
                             &nbsp;
                             <img src='assets/images/profileIcon.png' />
                             <br />
@@ -96,28 +102,27 @@
     </header>
 
     <main>
-        <div>
-            <span><span>БЕЗПЛАТНА ДОСТАВКА</span> ЗА ПОРЪЧКИ НАД 89 ЛВ.</span>
-            <span>30 ДНИ СРОК ЗА <span>БЕЗПЛАТНО ВРЪЩАНЕ</span></span>
-            <span><span>ПРОВЕРКА НА ПРАТКАТА</span></span>
+        <div id='home'>
+                    <section id='mainSection'>
+                       <article id='banners'>
+            
+                       </article>
+            
+                       <div id='items'>
+                        <h4>АКТУАЛНИ СЕЛЕКЦИИ</h4>
+            
+                       </div>
+                    </section>
+            
+
         </div>
-        <section id='mainSection'>
-           <article id='banners'>
-
-           </article>
-
-           <div id='items'>
-            <h4>АКТУАЛНИ СЕЛЕКЦИИ</h4>
-
-           </div>
-        </section>
-
         
+       
     </main>
 
+
+
     <footer>
-
-
         <div>
             <h3>ИНФОРМАЦИЯ &amp; УСЛОВИЯ</h3>
             <ul>
@@ -234,6 +239,43 @@
 
 
     </footer>
-</body>
 
+
+<script id='loginTemplate' type='text/template'>
+
+    <div id='buttons'>
+    <button id='loginButton'>ВХОД</button>
+    <button id='regButton'>РЕГИСТРИРАЙ СЕ</button>
+    </div>
+
+    <div id='loginDiv'>
+        <form action="">
+            <input id='user' type="text" placeholder="Потребителско име" />
+            <br/>
+            <input id='pass'  type="password" placeholder="Парола" />
+            <br/>
+            <button id="logIn">ВХОД</button>
+        </form>
+    </div>
+
+    <div id='registerDiv'>
+        <form action="">
+            <input id='regUser' type="text" placeholder="Имейл" />
+            <br/>
+            <input id='regPass'  type="password" placeholder="Парола" />
+            <br/>
+            <div id='conditions'>
+            <input type="checkbox" checked>Съгласен съм с <a href=''>Общите условия</a> на Fashion Days.
+            </div>
+            <br/>
+            <button id="register">РЕГИСТРИРАЙ СЕ</button>
+        </form>
+    </div>
+  
+</script>
+
+
+
+
+</body>
 </html>
