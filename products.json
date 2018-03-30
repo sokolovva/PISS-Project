@@ -1,0 +1,41 @@
+[
+  {
+    'id': '1001',
+    'name': 'Plaid jacket',
+    'brand': 'NEXT',
+    'category': 'CLOTHING',
+    'price': '152,90',
+    'gender': 'Women',
+    'subCategory': 'Coats & Jackets',
+    'description': 'Gray sporty elegant jacket with 2 pockets. Main: 100% Cotton',
+    'isPromotion': false,
+    'thumbnailImage': 'https://image.freepik.com/free-icon/t-shirt-on-a-hang_318-46377.jpg',
+    'images': []
+  },
+  {
+    'id': '1002',
+    'name': 'Crew neck T-Shirt',
+    'brand': 'adidas',
+    'category': 'CLOTHING',
+    'price': '25.49',
+    'gender': 'Men',
+    'subCategory': 'T-Shirts',
+    'description': 'Main: 94% Cotton, 6% Elastane',
+    'isPromotion': false,
+    'thumbnailImage': 'https://image.freepik.com/free-icon/t-shirt-on-a-hang_318-46377.jpg',
+    'images': []
+  },
+  {
+    'id': '1003',
+    'name': 'Polo Shirt',
+    'brand': 'adidas',
+    'category': 'CLOTHING',
+    'price': '28.99',
+    'gender': 'Men',
+    'subCategory': 'T-Shirts',
+    'description': 'Main: 94% Cotton, 6% Elastane',
+    'isPromotion': false,
+    'thumbnailImage': 'https://image.freepik.com/free-icon/t-shirt-on-a-hang_318-46377.jpg',
+    'images': []
+  }
+]
