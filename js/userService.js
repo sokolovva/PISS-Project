@@ -51,7 +51,7 @@ var userStorage = (function () {
 
         if (user != null) {
             this.loggedUserId = user.id;
-            sessionStorage.setItem('loggedUserId', JSON.stringify(this.loggedUserId));
+            sessionStorage.setItem('loggedUser', JSON.stringify(user));
             return this.loggedUserId;
         }
 
@@ -61,7 +61,8 @@ var userStorage = (function () {
 
     UserStorage.prototype.logout = function () {
         this.loggedUserId = 0;
-        sessionStorage.setItem('loggedUserId', JSON.stringify(this.loggedUserId));
+        sessionStorage.clear();
+        localStorage.setItem('users', JSON.stringify(this._users));
     };
 
 
@@ -73,6 +74,7 @@ var userStorage = (function () {
             var newOrder = JSON.parse(JSON.stringify(user.basket));
             user.orders.push(newOrder);
             user.basket.emptyCart();
+            localStorage.setItem('users', JSON.stringify(this._users));
         }
     };
 
@@ -84,6 +86,7 @@ var userStorage = (function () {
             this._users[index].favorites.push(product);
             localStorage.setItem('users', JSON.stringify(this._users));
             return true;
+           
         }
 
         return false;

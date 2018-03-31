@@ -19,17 +19,19 @@
     <script src="js/controllers/loginRegisterController.js"></script>
     <script src="js/controllers/homeController.js"></script>
     <script src="js/controllers/helpNavigation.js"></script>
+    <script src="js/controllers/userController.js"></script>
 </head>
 
 <body>
 
     <header>
         <nav id='headerNav'>
-            <h1 id='title'>
-                <span class='normalWhite'>FASHION</span>
-                <span class='normalWhite'>DAYS</span>
-            </h1>
-
+            <a href="#home">
+                <h1 id='title'>
+                    <span class='normalWhite'>FASHION</span>
+                    <span class='normalWhite'>DAYS</span>
+                </h1>
+            </a>
 
             <div id='search'>
                 <input type="text" placeholder="Търси в уебсайта..." id='serchItem' maxlength='30' name='seachItem' size=35 style="height:30px">
@@ -40,7 +42,7 @@
 
             <div>
                 <ul>
-                    <li>
+                    <li id='profile'>
                         <a href='#loginRegister'>
                             &nbsp;
                             <img src='assets/images/profileIcon.png' />
@@ -76,7 +78,7 @@
             <div id='categories'>
                 <ul>
                     <li>
-                        <a class='pink' href="">ЖЕНИ</a>
+                        <a href="">ЖЕНИ</a>
                     </li>
                     <li>
                         <a href="">МЪЖЕ</a>
@@ -103,21 +105,6 @@
     </header>
 
     <main>
-        <div id='home'>
-            <section id='mainSection'>
-                <article id='banners'>
-
-                </article>
-
-                <div id='items'>
-                    <h4>АКТУАЛНИ СЕЛЕКЦИИ</h4>
-
-                </div>
-            </section>
-
-
-        </div>
-
 
     </main>
 
@@ -238,13 +225,11 @@
 
 
     <script id='loginTemplate' type='text/template'>
-
-    <div id='buttons'>
-    <button id='loginButton'>ВХОД</button>
-    <button id='regButton'>РЕГИСТРИРАЙ СЕ</button>
-    </div>
-
-    <div id='loginDiv'>
+        <div id='buttons'>
+            <button id='loginButton'>ВХОД</button>
+            <button id='regButton'>РЕГИСТРИРАЙ СЕ</button>
+        </div>
+        <div id='loginDiv'>
         <form action="">
             <input id='user' type="text" placeholder="Потребителско име" />
             <br/>
@@ -252,9 +237,8 @@
             <br/>
             <button id="logIn">ВХОД</button>
         </form>
-    </div>
-
-    <div id='registerDiv'>
+         </div>
+        <div id='registerDiv'>
         <form action="">
             <input id='regUser' type="text" placeholder="Потребителско име" />
             <br/>
@@ -266,8 +250,7 @@
             <br/>
             <button id="register">РЕГИСТРИРАЙ СЕ</button>
         </form>
-    </div>
-  
+        </div>
     </script>
 
 
@@ -471,6 +454,72 @@
     </div>
 
 
+
+    <div id='mainDiv'>
+        <section id='mainSection'>
+            <article id='banners'>
+
+            </article>
+
+            <div id='items'>
+                <h4>АКТУАЛНИ СЕЛЕКЦИИ</h4>
+
+            </div>
+        </section>
+    </div>
+
+
+    <div id='profileDiv'>
+        <section id='profileSection'>
+            <aside>
+                <ul>
+                    <li>
+                        <a href="#settings">НАСТРОЙКИ</a>
+                    </li>
+                    <li>
+                        <a href="#orders">ПОРЪЧКИ</a>
+                    </li>
+                    <li>
+                        <a href="#favourites">ЛЮБИМИ ПРОДУКТИ</a>
+                    </li>
+                    <li>
+                        <a href="#adresses">АДРЕСИ</a>
+                    </li>
+                    <li>
+                        <a href="#cards">БАНКОВИ КАРТИ</a>
+                    </li>
+                    <li>
+                        <a href="#logout">ИЗХОД</a>
+                    </li>
+                </ul>
+
+            </aside>
+
+            <section>
+
+            </section>
+
+            <article id='settingsArticle'>
+
+            </article>
+
+            <article id='ordersArticle'>
+                <!-- todo: adding data with handlebars -->
+            </article>
+
+            <article id='favouritesArticle'>
+                <!-- todo: adding data with handlebars -->
+            </article>
+
+            <article id='addressesArticle'>
+                <!-- todo: adding data with handlebars -->
+            </article>
+
+            <article id='cardsArticle'>
+                <!-- todo: adding data with handlebars -->
+            </article>
+        </section>
+    </div>
 
 
 </body>

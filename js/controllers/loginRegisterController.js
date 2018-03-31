@@ -24,7 +24,8 @@ function loginRegisterController(){
     
                 if(userId){
                     location.replace('#home');
-                    return true;
+                    var profile = $('<a href="#profileManager">&nbsp;<img src="assets/images/profileIcon.png"/><br/><span class="normalWhite">МОЯТ ПРОФИЛ</span></a>');
+                    $('#profile').html(profile);
                 } else {
                     alert('Невалидно потребителско име/парола!');
                     return;

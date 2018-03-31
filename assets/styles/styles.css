@@ -30,16 +30,21 @@ a {
     font-weight: bold;
 }
 
-nav>h1>span:first-child{
+a>h1>span:first-child{
     text-decoration: underline;
     font-size:1.8em;
     font-weight: bold;
 }
 
+a>h1>span:last-child{
+    font-size:2em;
+    font-weight: bold;
+}
+
 #search{
     position: relative;
-    top:25px;
-    left:270px;
+    top:-2px;
+    left:450px;
 } 
 
 #submit{
@@ -56,10 +61,6 @@ nav>h1>span:first-child{
     cursor: pointer;      
 }
 
-nav>h1>span:last-child{
-    font-size:2em;
-    font-weight: bold;
-}
 
 #title{
     position: relative;
@@ -73,7 +74,7 @@ nav>h1>span:last-child{
 
 #headerNav ul{
     position: relative;
-    top:-18px;
+    top:-44px;
     right:160px;
     float:right; 
 }
@@ -192,13 +193,15 @@ footer>div{
 
 #payInfo>div{
    float:left;
-   margin: 0em 10em 1em 0em;
+   margin: 0em 9em 1em 0em;
 }
 
+#mainDiv{
+    display: none;
+}
 
-
-#mainSection>article{
-
+#mainSection article{
+    
     height: 450px;
     border-bottom:1px solid black;
 }
@@ -338,4 +341,29 @@ button{
     margin: 0.5em;
     padding: 0.5em;
     line-height: 1.5em;
+}
+
+
+#profileDiv{
+    display: none;
+}
+
+#profileSection aside{
+    width:20%;
+    background-color:#E6E6E6;
+    height: 1000px;
+}
+
+#profileSection ul{
+    list-style-type: disc;
+    color:#9d0052;
+    position: relative;
+    top: 137px;
+    padding: 2em;
+}
+
+#profileSection a{
+    color: black;
+    font-size: 0.9em;
+    line-height: 2em;
 }

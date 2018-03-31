@@ -24,6 +24,27 @@ document.addEventListener('DOMContentLoaded', function () {
             case 'generalCondition':
                 genCondController();
                 break;
+            case 'profileManager':
+                profileController();
+                break;
+            case 'logout':
+                logoutController();
+                break;
+            case 'settings':
+                settingController();
+                break;
+            case 'orders':
+                ordersController();
+                break;
+            case 'favourites':
+                favouritesController();
+                break;
+            case 'adresses':
+                addressesController();
+                break;
+            case 'cards':
+                cardsController();
+                break;
             default:
                 homeController();
                 break;

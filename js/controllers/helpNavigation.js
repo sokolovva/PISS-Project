@@ -24,7 +24,7 @@ function helpNavigation() {
             location.replace('#generalCondition');
         });
 
-    })
+    });
 
 }
 
@@ -36,8 +36,8 @@ function helpController() {
         $('main').html($('#helpOptions').html() + $('#faqSection').html());
         $('main dd').toggle();
         $('main dt').on('click', function () { $(this).next().toggle() });
-
         helpNavigation();
+      
     })
 }
 
