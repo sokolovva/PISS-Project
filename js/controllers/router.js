@@ -3,16 +3,27 @@ document.addEventListener('DOMContentLoaded', function () {
         var page = location.hash.slice(1);
 
         switch (page) {
-            case 'login':
-                loginController();
+            case 'loginRegister':
+                loginRegisterController();
                 break;
             case 'home':
                 homeController();
                 break;
-            case 'register':
-                registerController();
+            case 'help':
+                helpController();
                 break;
-
+            case 'contact':
+                contactController();
+                break;
+            case 'condition':
+                conditionController();
+                break;
+            case 'forUs':
+                forUsController();
+                break;
+            case 'generalCondition':
+                genCondController();
+                break;
             default:
                 homeController();
                 break;

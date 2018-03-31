@@ -1,4 +1,4 @@
-function loginController(){
+function loginRegisterController(){
 
         $(function(){
 
@@ -56,22 +56,4 @@ function loginController(){
            
 
         })
-        
-        
-       
-
-
-
-
-
-
-   
-
-
-}
-
-
-
-function registerController(){
-
 }
