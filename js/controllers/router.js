@@ -10,40 +10,23 @@ document.addEventListener('DOMContentLoaded', function () {
                 homeController();
                 break;
             case 'help':
-                helpController();
+                faqController();
                 break;
-            case 'contact':
-                contactController();
-                break;
-            case 'condition':
-                conditionController();
-                break;
-            case 'forUs':
-                forUsController();
-                break;
+            case 'contact':          
+            case 'condition':     
+            case 'forUs':     
             case 'generalCondition':
-                genCondController();
-                break;
-            case 'profileManager':
-                profileController();
+                helpController();
                 break;
             case 'logout':
                 logoutController();
                 break;
             case 'settings':
-                settingController();
-                break;
             case 'orders':
-                ordersController();
-                break;
             case 'favourites':
-                favouritesController();
-                break;
-            case 'adresses':
-                addressesController();
-                break;
+            case 'adresses':   
             case 'cards':
-                cardsController();
+                settingController();
                 break;
             default:
                 homeController();

@@ -18,7 +18,7 @@
     <script src="js/controllers/router.js"></script>
     <script src="js/controllers/loginRegisterController.js"></script>
     <script src="js/controllers/homeController.js"></script>
-    <script src="js/controllers/helpNavigation.js"></script>
+    <script src="js/controllers/helpController.js"></script>
     <script src="js/controllers/userController.js"></script>
     <script src="js/controllers/productController.js"></script>
 </head>
@@ -85,7 +85,7 @@
                         <a id="mainMenu-men" href="#men">МЪЖЕ</a>
                     </li>
                     <li>
-                        <a href="#brands">МАРКИ</a>
+                        <a id="mainMenu-brands" href="#brands">МАРКИ</a>
                     </li>
                     <li>
                         <a href="" class='pink' style="font-weight:bolder">ОФЕРТИ</a>
@@ -257,11 +257,11 @@
 
     <div id='faq'>
         <div id='helpOptions'>
-            <button id='faqButton'>ЧЕСТО ЗАДАВАНИ ВЪПРОСИ</button>
-            <button id='forUsButton'>ЗА НАС</button>
-            <button id='contactButton'>ЗА КОНТАКТ</button>
-            <button id='conditionButton'>УСЛОВИЯ ЗА ВРЪЩАНЕ</button>
-            <button id='generalConditionButton'>ОБЩИ УСЛОВИЯ</button>
+            <a href="#help"><button id="faqButton">ЧЕСТО ЗАДАВАНИ ВЪПРОСИ</button></a>
+            <a href="#forUs"><button>ЗА НАС</button></a>
+            <a href="#contact"> <button>ЗА КОНТАКТ</button></a>
+            <a href="#condition"><button>УСЛОВИЯ ЗА ВРЪЩАНЕ</button></a>
+           <a href="#generalCondition"> <button>ОБЩИ УСЛОВИЯ</button></a>
         </div>
 
         <section id='faqSection'>
@@ -416,7 +416,7 @@
 
         </section>
 
-        <section id='generalCondSection'>
+        <section id='generalConditionSection'>
             <div class='help'>
 
                 <h1>ОБЩИ УСЛОВИЯ ЗА ПОЛЗВАНЕ на fashionays.bg</h1>
@@ -501,7 +501,46 @@
             </section>
 
             <article id='settingsArticle'>
+                <div>
+                    <h1>Общи настройки</h1>
+                    <form action="">
 
+                        <label for="firstName">Име *</label>
+                        <input type="text" id='firstName'>
+                        <label for="surname">Фамилия *</label>
+                        <input type="text" id='surname'>
+                        <br/>
+                        <br/>
+                        <label for="username">Потребителско име *</label>
+                        <input type="text" id='username'>
+                        <br/>
+                        <br/>
+                        <label for="gender">Пол: </label>
+
+                        <input type="radio" name='gender' id='gender' value='f' checked> Жена
+                        <input type="radio" name='gender' value='m'> Мъж
+                        <br/>
+                        <br/>
+                        <input type="submit" id='savePersonalInfo' value="Запази">
+                    </form>
+                </div>
+                <div>
+                    <h1>Смяна на парола</h1>
+                    <form action="">
+                        <label for="currentPass">Текуща парола</label>
+                        <input type="password" id='currentPass'>
+                        <label for="newPass">Нова парола</label>
+                        <input type="password" id='newPass'>
+                        <br/>
+                        <br/>
+                        <label for="newPass2">Потвърди новата парола</label>
+                        <input type="password" id='newPass2'>
+                        <br/>
+                        <br/>
+                        <input type="submit" id='saveNewPass' value="Запази">
+                    </form>
+
+                </div>
             </article>
 
             <article id='ordersArticle'>
@@ -523,9 +562,19 @@
     </div>
 
 
-    <div id="mainMenuW" style="position:absolute; width: 1110px; border:1px solid orangered; height: 200px; top:130px; left:160px; display: none">
+    <div id="mainMenuDiv">
+        <div id="mainMenuW">
+        </div>
+
+        <div id="mainMenuM"></div>
+    </div>
+
+    <div id="mainMenuB"></div>
+    </div>
 
     </div>
+
+
 
 </body>
 

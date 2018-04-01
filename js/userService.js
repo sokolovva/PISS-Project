@@ -9,6 +9,7 @@ var userStorage = (function () {
         this.orders = [];
         this.addresses = [];
         this.cards = [];
+        this.gender = '';
     }
 
 
@@ -67,7 +68,7 @@ var userStorage = (function () {
 
 
     UserStorage.prototype.purchase = function (userId) {
-        var index = this._users.find(user => user.id == userId);
+        var index = this._users.findIndex(user => user.id == userId);
 
         if (index != -1) {
             var user = this._users[index];
@@ -80,24 +81,24 @@ var userStorage = (function () {
 
 
     UserStorage.prototype.addToFavorites = function (userId, product) {
-        var index = this._users.find(user => user.id == userId);
+        var index = this._users.findIndex(user => user.id == userId);
 
         if (index != -1) {
             this._users[index].favorites.push(product);
             localStorage.setItem('users', JSON.stringify(this._users));
             return true;
-           
+
         }
 
         return false;
     };
 
 
-    UserStorage.prototype.addAddress = function (userId, fullName, phoneNumber, city, postcode, streetAddress) {
-        var index = this._users.find(user => user.id == userId);
+    UserStorage.prototype.addAddress = function (userId, name, surname, phoneNumber, city, postcode, streetAddress) {
+        var index = this._users.findIndex(user => user.id == userId);
 
         if (index != -1) {
-            var newAddress = new Address(fullName, phoneNumber, city, postcode, streetAddress);
+            var newAddress = new Address(name,surname, phoneNumber, city, postcode, streetAddress);
             this._users[index].addresses.push(newAddress);
             localStorage.setItem('users', JSON.stringify(this._users));
             return true;
@@ -108,7 +109,7 @@ var userStorage = (function () {
 
 
     UserStorage.prototype.addCard = function (userId, nameOnCard, cardNumber, expirationDate) {
-        var index = this._users.find(user => user.id == userId);
+        var index = this._users.findIndex(user => user.id == userId);
 
         if (index != -1) {
             var newCard = new Card(nameOnCard, cardNumber, expirationDate);
@@ -120,6 +121,48 @@ var userStorage = (function () {
         return false;
     };
 
+    UserStorage.prototype.changePassword = function (oldPass, newPass, repeatedPass) {
+        var user = JSON.parse(sessionStorage.getItem("loggedUser"));
+        var usr = this._users.find(u => {
+            return user.id == u.id;
+        });
+
+        if (usr) {
+            if ((usr.password == oldPass) && (newPass.trim().length > 8) && (newPass === repeatedPass)) {
+                usr.password = newPass;
+                sessionStorage.setItem('loggedUser', JSON.stringify(usr));
+                localStorage.setItem('users', JSON.stringify(this._users));
+                return true;
+            }
+        }
+
+        return false;
+
+    }
+
+
+
+    UserStorage.prototype.changeSettings = function (name, surname, newUsername, gender) {
+        var user = JSON.parse(sessionStorage.getItem("loggedUser"));
+        var usr = this._users.find(u => {
+            return user.id == u.id;
+        });
+
+        if (usr) {
+            if (name.trim().length > 0 && surname.trim().length > 0 && newUsername.trim().length > 0) {
+                usr.name = name;
+                usr.surname = surname;
+                usr.username = newUsername;
+                usr.gender = gender;
+                sessionStorage.setItem('loggedUser', JSON.stringify(usr));
+                localStorage.setItem('users', JSON.stringify(this._users));
+                return true;
+            }
+        }
+
+        return false;
+
+    }
 
     function Address(fullName, phoneNumber, city, postcode, streetAddress) {
         this.fullName = fullName;
@@ -139,6 +182,8 @@ var userStorage = (function () {
     return new UserStorage();
 })();
 
+
+/*
 (function(){
     var xhr = new XMLHttpRequest();
 
@@ -149,4 +194,4 @@ var userStorage = (function () {
         var data = JSON.parse(xhr.responseText);
         userStorage._users = data;
     });
-})();
+})();*/

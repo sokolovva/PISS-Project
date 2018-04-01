@@ -1,12 +1,12 @@
+//при рефреш на страницата да се проверява дали има логнат ючър, за да не се показва ВХОД бутона
 $(function () {
     $(window).on('load', function () {
         if (sessionStorage.getItem('loggedUser')) {
-            var profile = $('<a href="#profileManager">&nbsp;<img src="assets/images/profileIcon.png"/><br/><span class="normalWhite">МОЯТ ПРОФИЛ</span></a>');
+            var profile = $('<a href="#settings">&nbsp;<img src="assets/images/profileIcon.png"/><br/><span class="normalWhite">МОЯТ ПРОФИЛ</span></a>');
             $('#profile').html(profile);
         };
     });
 })
-
 
 function logoutController() {
     $(function () {
@@ -19,32 +19,53 @@ function logoutController() {
 
 function settingController() {
     $(function () {
-        $('#profileSection section').html($('#settingsArticle').html());
+        $('main').html($('#profileDiv').html());
+        var page = location.hash;
+        $('#profileDiv article').hide();
+        $('#profileSection section').eq(1).html($("" + page + "Article").html());
+        $('main').html($('#profileDiv').html());
+
+        var username = JSON.parse(sessionStorage.getItem('loggedUser'));
+        $('#username').val(username.username);
+
+        //changing settings
+        $('#savePersonalInfo').on('click', changeSettings);
+        $('#saveNewPass').on('click', changePass);
+
     })
 }
 
 
-function cardsController() {
-    $(function () {
-        $('#profileSection section').html($('#cardsArticle').html());
-    })
+
+//ProfileManager functions
+function changeSettings(event) {
+    event.preventDefault();
+    var firstName = $('#firstName').val();
+    var surname = $('#surname').val();
+    var newUsername = $('#username').val();
+    var gender = $('input[name=gender]:checked').val();
+
+    if (userStorage.changeSettings(firstName, surname, newUsername, gender)) {
+        $('input[type=text]').val('');
+        alert("Вашите данни бяха променени успешно!");
+    } else {
+        alert("Непопълнени задължителни полета!");
+    }
+    var username = JSON.parse(sessionStorage.getItem('loggedUser'));
+        $('#username').val(username.username);
+
 }
 
-function addressesController() {
-    $(function () {
-        $('#profileSection section').html($('#addressesArticle').html());
-    })
-}
+function changePass(event) {
+    event.preventDefault();
+    var oldPass = $('#currentPass').val();
+    var newPass = $('#newPass').val();
+    var newPass2 = $('#newPass2').val();
 
-function favouritesController() {
-    $(function () {
-        $('#profileSection section').html($('#favouritesArticle').html());
-    })
+    if (userStorage.changePassword(oldPass, newPass, newPass2)) {
+        alert("Вашата парола беше променена успешно!");
+    } else {
+        alert("Невалидни данни! Опитайте отново!");
+    }
+    $('input[type=password]').val('');
 }
-
-function ordersController() {
-    $(function () {
-        $('#profileSection section').html($('#ordersArticle').html());
-    })
-}
-

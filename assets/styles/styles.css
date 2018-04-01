@@ -219,8 +219,8 @@ footer>div{
 
 
 
-#registerDiv input[type='text'], input[type='password'],
-#loginDiv input[type='text'], input[type='password']{
+#registerDiv input[type='text'], #registerDiv input[type='password'],
+#loginDiv input[type='text'], #loginDiv input[type='password']{
     width: 50%;
     height: 40px;
     padding: 2em;
@@ -345,20 +345,20 @@ button{
 
 
 #profileDiv{
-    display: none;
+display:none;
 }
 
 #profileSection aside{
     width:20%;
     background-color:#E6E6E6;
     height: 1000px;
+    display: inline-block;    
 }
 
 #profileSection ul{
     list-style-type: disc;
     color:#9d0052;
     position: relative;
-    top: 137px;
     padding: 2em;
 }
 
@@ -366,4 +366,54 @@ button{
     color: black;
     font-size: 0.9em;
     line-height: 2em;
+    border-bottom:1px solid #9d0052;
+    border-radius: 12%;
+}
+
+#mainMenuW, #mainMenuB, #mainMenuM{
+    position: absolute; 
+    width: 1110px;
+    height: 200px; 
+    top:130px; 
+    left:160px; 
+    display: none;
+    background-color: #F5F5F5;
+}
+
+#profileSection section{
+   float: right;
+    width:76.8%;
+    display: inline-block;
+    left: -20px;
+}
+
+#profileSection{
+    position: relative;
+    top:150px;
+    
+}
+
+#profileSection section div{
+    background-color: #E6E6E6;
+    width: 99%;
+    margin-bottom:2em;
+    padding: 1em;
+   
+}
+
+#profileSection section div form{
+    padding: 1em;
+    line-height: 1em;
+}
+
+#profileSection h1{
+    color: #9d0052;
+}
+
+#profileSection input[type=submit]{
+    width: 250px;
+    height: 30px;
+    background-color: #9d0052;
+    border-radius: 15%;
+    font-weight: bold;
 }
