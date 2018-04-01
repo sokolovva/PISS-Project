@@ -138,3 +138,15 @@ var userStorage = (function () {
 
     return new UserStorage();
 })();
+
+(function(){
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', 'users.json', true);
+    xhr.send(null);
+
+    xhr.addEventListener('load', function(){
+        var data = JSON.parse(xhr.responseText);
+        userStorage._users = data;
+    });
+})();

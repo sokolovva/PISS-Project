@@ -1,52 +1,52 @@
 [
   {
-    'username': 'pesho',
-    'password': '12345678',
-    'id': '1001',
-    'basket': [],
-    'favorites': [],
-    'orders': [],
-    'addresses': [],
-    'cards': []
+    "username": "pesho",
+    "password": "12345678",
+    "id": "1001",
+    "basket": [],
+    "favorites": [],
+    "orders": [],
+    "addresses": [],
+    "cards": []
   },
   {
-    'username': 'gosho',
-    'password': '12345678',
-    'id': '1002',
-    'basket': [],
-    'favorites': [],
-    'orders': [],
-    'addresses': [],
-    'cards': []
+    "username": "gosho",
+    "password": "12345678",
+    "id": "1002",
+    "basket": [],
+    "favorites": [],
+    "orders": [],
+    "addresses": [],
+    "cards": []
   },
   {
-    'username': 'bojidara',
-    'password': '12345678',
-    'id': '1003',
-    'basket': [],
-    'favorites': [],
-    'orders': [],
-    'addresses': [],
-    'cards': []
+    "username": "bojidara",
+    "password": "12345678",
+    "id": "1003",
+    "basket": [],
+    "favorites": [],
+    "orders": [],
+    "addresses": [],
+    "cards": []
   },
   {
-    'username': 'mira',
-    'password': '12345678',
-    'id': '1004',
-    'basket': [],
-    'favorites': [],
-    'orders': [],
-    'addresses': [],
-    'cards': []
+    "username": "mira",
+    "password": "12345678",
+    "id": "1004",
+    "basket": [],
+    "favorites": [],
+    "orders": [],
+    "addresses": [],
+    "cards": []
   },
   {
-    'username': 'tosho',
-    'password': '12345678',
-    'id': '1005',
-    'basket': [],
-    'favorites': [],
-    'orders': [],
-    'addresses': [],
-    'cards': []
+    "username": "tosho",
+    "password": "12345678",
+    "id": "1005",
+    "basket": [],
+    "favorites": [],
+    "orders": [],
+    "addresses": [],
+    "cards": []
   }
 ]

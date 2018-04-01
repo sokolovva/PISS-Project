@@ -36,3 +36,15 @@ var productStorage = (function () {
 
     return new ProductStorage();
 })();
+
+(function(){
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', 'products.json', true);
+    xhr.send(null);
+
+    xhr.addEventListener('load', function(){
+        var data = JSON.parse(xhr.responseText);
+        productStorage._products = data;
+    });
+})();
