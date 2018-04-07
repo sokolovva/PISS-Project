@@ -27,6 +27,7 @@ function settingController() {
 
         var username = JSON.parse(sessionStorage.getItem('loggedUser'));
         $('#username').val(username.username);
+        loadGeneralSettings(username);
 
         //changing settings
         $('#savePersonalInfo').on('click', changeSettings);
@@ -35,7 +36,15 @@ function settingController() {
     })
 }
 
-
+function loadGeneralSettings(username) {
+    $('#firstName').val(username.name);
+    $('#surname').val(username.surname);
+    if (username.gender == 'f') {
+        $('input[value=f]').prop("checked", true);
+    } else {
+        $('input[value=m]').prop("checked", true);
+    }
+}
 
 //ProfileManager functions
 function changeSettings(event) {
@@ -53,6 +62,7 @@ function changeSettings(event) {
     }
     var username = JSON.parse(sessionStorage.getItem('loggedUser'));
         $('#username').val(username.username);
+        loadGeneralSettings(username);
 
 }
 
