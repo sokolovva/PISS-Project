@@ -25,6 +25,7 @@ function loginRegisterController(){
                 
                 var user = $('#user').val();
                 var pass = $('#pass').val();
+
                 var userId=userStorage.login(user, pass);
     
                 if(userId){
@@ -57,7 +58,6 @@ function loginRegisterController(){
                     alert('Това потребителско име вече е заето!');
                     $('#regUser').val('');
                     $('#regPass').val('');
-
                     return;
                 }    
             })

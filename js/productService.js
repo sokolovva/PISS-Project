@@ -1,11 +1,12 @@
 var productStorage = (function () {
     function ProductStorage() {
         this._products = [];
+        this.categories = [];
     }
 
     ProductStorage.nextId = 1;
 
-    ProductStorage.prototype.addProduct = function (name, brand, category, price, gender) {
+    ProductStorage.prototype.addProduct = function (name, brand, size, category, price, gender) {
         var newProduct = new Product(name, brand, category, price, gender);
         this._products.push(newProduct);
     };
@@ -20,6 +21,12 @@ var productStorage = (function () {
         }
     };
 
+    
+
+
+
+
+
     function Product(name, brand, category, price, gender) {
         this.id = ProductStorage.nextId++;
         this.name = name;
@@ -27,8 +34,8 @@ var productStorage = (function () {
         this.category = category;
         this.price = price;
         this.gender = gender;
-        //this.subCategory = subCategory;
-        //this.description = description;
+        this.description = description;
+        this.size;
         //this.isPromotion = isPromotion;
         //this.thumbnailImage = thumbnailImage;
         //this.images = imgArray; //array with images
