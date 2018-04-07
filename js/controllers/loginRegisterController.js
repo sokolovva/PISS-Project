@@ -4,16 +4,21 @@ function loginRegisterController(){
 
             $('main').html($('#loginTemplate').html());
             $('#registerDiv').hide();
+            $('#regButton').css('border-bottom', 'none');
 
             $('#loginButton').on('click', function(){
                 $('#loginDiv').show(100);
                 $('#registerDiv').hide(100);
-            })
+                $('#loginButton').css('border-bottom', '2px ridge #9d0052');
+                $('#regButton').css('border-bottom', 'none');
+            });
 
             $('#regButton').on('click', function(){
                 $('#registerDiv').show(100);
                 $('#loginDiv').hide(100);
-            })
+                $('#loginButton').css('border-bottom', 'none');
+                $('#regButton').css('border-bottom', '2px ridge #9d0052');
+            });
 
 
             $('#logIn').on('click', function(){
@@ -44,6 +49,8 @@ function loginRegisterController(){
                     $('#registerDiv').hide(100);
                     $('#regUser').val('');
                     $('#regPass').val('');
+                    $('#loginButton').css('border-bottom', '2px ridge #9d0052');
+                    $('#regButton').css('border-bottom', 'none');
 
 
                 } else {
