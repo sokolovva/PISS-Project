@@ -17,12 +17,12 @@ function logoutController() {
     })
 };
 
-function settingController() {
+function settingController(page) {
     $(function () {
+
         $('main').html($('#profileDiv').html());
-        var page = location.hash;
         $('#profileDiv article').hide();
-        $('#profileSection section').eq(1).html($("" + page + "Article").html());
+        $('#profileSection section').eq(1).html($("#" + page + "Article").html());
         $('main').html($('#profileDiv').html());
 
         var username = JSON.parse(sessionStorage.getItem('loggedUser'));
@@ -52,7 +52,7 @@ function changeSettings(event) {
         alert("Непопълнени задължителни полета!");
     }
     var username = JSON.parse(sessionStorage.getItem('loggedUser'));
-        $('#username').val(username.username);
+    $('#username').val(username.username);
 
 }
 

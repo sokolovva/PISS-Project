@@ -10,6 +10,8 @@ var userStorage = (function () {
         this.addresses = [];
         this.cards = [];
         this.gender = '';
+        this.surname = '';
+        this.name = '';
     }
 
 
@@ -98,7 +100,7 @@ var userStorage = (function () {
         var index = this._users.findIndex(user => user.id == userId);
 
         if (index != -1) {
-            var newAddress = new Address(name,surname, phoneNumber, city, postcode, streetAddress);
+            var newAddress = new Address(name, surname, phoneNumber, city, postcode, streetAddress);
             this._users[index].addresses.push(newAddress);
             localStorage.setItem('users', JSON.stringify(this._users));
             return true;
@@ -181,17 +183,3 @@ var userStorage = (function () {
 
     return new UserStorage();
 })();
-
-
-/*
-(function(){
-    var xhr = new XMLHttpRequest();
-
-    xhr.open('GET', 'users.json', true);
-    xhr.send(null);
-
-    xhr.addEventListener('load', function(){
-        var data = JSON.parse(xhr.responseText);
-        userStorage._users = data;
-    });
-})();*/

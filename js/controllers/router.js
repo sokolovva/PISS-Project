@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+$(function () {
     function router() {
         var page = location.hash.slice(1);
 
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
             case 'condition':     
             case 'forUs':     
             case 'generalCondition':
-                helpController();
+                helpController(page);
                 break;
             case 'logout':
                 logoutController();
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
             case 'favourites':
             case 'adresses':   
             case 'cards':
-                settingController();
+                settingController(page);
                 break;
             default:
                 homeController();

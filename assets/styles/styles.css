@@ -417,3 +417,7 @@ display:none;
     border-radius: 15%;
     font-weight: bold;
 }
+
+#categories a:hover{
+    color:#9d0052;
+}
