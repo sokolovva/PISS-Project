@@ -51,67 +51,17 @@ function settingController(page) {
         $('#username').val(username.username);
         loadGeneralSettings(username);
 
-
+        //editing or deleting existing card or address
         $('.editAddress, .editCard').on('click', editCardOrAddress);
         $('.deleteAddress, .deleteCard').on('click', deleteCardOrAddress);
-
 
         //changing settings
         $('#savePersonalInfo').on('click', changeSettings);
         $('#saveNewPass').on('click', changePass);
 
-        $('#addCard').on('click', function () {
-            var span = $('<span>✔</span>');
-            var html = $('<div><p>Име: <input type="text"/></p><p>Номер <br/> на картата: <input type="text"/></p><p>Валидна до: <input type="date"/></p><p style="color:#9d0052; font-size:14px;">Всички полета са задължителни!</p></div>');
-            html.append(span);
-            $('#cards').append(html);
-
-            $('#cards span').on('click', function () {
-                var name = $('#cards input').eq(0).val();
-                var cardNumber = $('#cards input').eq(1).val();
-                var validDate = $('#cards input').eq(2).val();
-                if (name == '' || cardNumber == '' || validDate == '') {
-                    alert('Непопълнени задължителни полета!');
-                    return;
-                } else {
-                    if (userStorage.addCard(username.id, name, cardNumber, validDate)) {
-                        alert('Картата беше добавена успешно!');
-                        $('#cards input').val('');
-                        settingController(page);
-                    }
-
-                }
-            })
-
-
-        })
-
-        $('#addAddress').on('click', function () {
-            var span = $('<span>✔</span>');
-            var html = $('<div> <p>Име: <input type="text"/></p><p>Телефонен <br/> номер: <input type="text"/></p><p>Град: <input type="text"/></p><p>Пощенски <br/> код: <input type="text"/></p><p>Улица: <input type="text"/></p><p style="color:#9d0052; font-size:14px;">Всички полета са задължителни!</p></div>');
-            html.append(span);
-            $('#address').append(html);
-
-            $('#address span').on('click', function () {
-                var name = $('#address input').eq(0).val();
-                var telephone = $('#address input').eq(1).val();
-                var city = $('#address input').eq(2).val();
-                var postalCode = $('#address input').eq(3).val();
-                var street = $('#address input').eq(4).val();
-
-                if (name == '' || telephone == '' || city == '' || postalCode == '' || street == '') {
-                    alert('Непопълнени задължителни полета!');
-                    return;
-                } else {
-
-                    if (userStorage.addAddress(username.id, name, telephone, city, postalCode, street)) {
-                        alert('Промените бяха извършени успешно!');
-                        $('#address input').val('');
-                        settingController(page);
-                    }
-                }
-            })
-        })
+        //adding new card or address
+        $('#addCard').on('click', addCardorAddress);
+        $('#addAddress').on('click', addCardorAddress);
 
     })
 }
@@ -182,4 +132,54 @@ function deleteCardOrAddress() {
 function editCardOrAddress() {
 
 
+}
+
+
+
+function addCardorAddress() {
+    var username = JSON.parse(sessionStorage.getItem('loggedUser'));
+    var page = location.hash.slice(1);
+    var span = $('<span>✔</span>');
+    var cardOrAddress = $(this).attr('id').substring(3);
+    if (cardOrAddress == 'Card') {
+        var html = $('<div><p>Име: <input type="text"/></p><p>Номер <br/> на картата: <input type="text"/></p><p>Валидна до: <input type="date"/></p><p style="color:#9d0052; font-size:14px;">Всички полета са задължителни!</p></div>');
+    } else {
+        var html = $('<div> <p>Име: <input type="text"/></p><p>Телефонен <br/> номер: <input type="text"/></p><p>Град: <input type="text"/></p><p>Пощенски <br/> код: <input type="text"/></p><p>Улица: <input type="text"/></p><p style="color:#9d0052; font-size:14px;">Всички полета са задължителни!</p></div>');
+    }
+    html.append(span);
+    $("#" + cardOrAddress).append(html);
+
+    $("#" + cardOrAddress + " span").on('click', function () {
+        if (cardOrAddress == 'Card') {
+            var name = $("#" + cardOrAddress + " input").eq(0).val();
+            var cardNumber = $("#" + cardOrAddress + " input").eq(1).val();
+            var validDate = $("#" + cardOrAddress + " input").eq(2).val();
+            if (name == '' || cardNumber == '' || validDate == '') {
+                alert('Непопълнени задължителни полета!');
+                return;
+            } else {
+                if (userStorage.addCard(username.id, name, cardNumber, validDate)) {
+                    alert('Картата беше добавена успешно!');
+                    $('#Card input').val('');
+                    settingController(page);
+                }
+            }
+        } else {
+            var name = $("#" + cardOrAddress + " input").eq(0).val();
+            var telephone = $("#" + cardOrAddress + " input").eq(1).val();
+            var city = $("#" + cardOrAddress + " input").eq(2).val();
+            var postalCode = $("#" + cardOrAddress + " input").eq(3).val();
+            var street = $("#" + cardOrAddress + " input").eq(4).val();
+            if (name == '' || telephone == '' || city == '' || postalCode == '' || street == '') {
+                alert('Непопълнени задължителни полета!');
+                return;
+            } else {
+                if (userStorage.addAddress(username.id, name, telephone, city, postalCode, street)) {
+                    alert('Адресът беше добавен успешно!');
+                    $('#Address input').val('');
+                    settingController(page);
+                }
+            }
+        }
+    })
 }

@@ -451,36 +451,36 @@ display:none;
 }
 
 
-#address table, #cards table{
+#Address table, #Card table{
     margin: 1em;
     padding: 1em;
     width: 93%;
     height:auto;
 }
 
-#address table td, #cards table td{
+#Address table td, #Card table td{
     border:1px ridge gray;
     padding: 1em;
     color:black;
 }
 
-#cards button{
+#Card button{
     top:0px;
     width: 170px;
     height: 30px;
 
 }
 
-#address #addAddress{
+#Address #addAddress{
     width: 170px;
     height: 30px;
 }
-#address button{
+#Address button{
     top:0px;
     width:110px;
     height: 30px;
 }
-#cards span, #address span{
+#Card span, #Address span{
     color: #9d0052;
     cursor: pointer;
     font-size: 3em;
@@ -488,11 +488,11 @@ display:none;
     left: 300px;
     top: -76px;
     background-color: white;
-  border-radius: 40%;
+    border-radius: 40%;
 
 }
 
 
-#cards p, #address p{
+#Card p, #Address p{
     padding:0.2em;
 }
