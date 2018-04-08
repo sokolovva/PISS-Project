@@ -20,18 +20,98 @@ function logoutController() {
 function settingController(page) {
     $(function () {
 
+        var username = JSON.parse(sessionStorage.getItem('loggedUser'));
+
+        if (username) {
+            var cards = username.cards;
+            var address = username.addresses;
+            if (page == 'cards') {
+                var cardTemplate = $('#cardsTemplate').text();
+                var cardPage = Handlebars.compile(cardTemplate);
+                $('#profileSection section').eq(1).html($(cardPage({ cards: cards })));
+            } else {
+                if (page == 'adresses') {
+                    var addressTemplate = $('#adressessTemplate').text();
+                    var addressPage = Handlebars.compile(addressTemplate);
+                    $('#profileSection section').eq(1).html($(addressPage({ address: address })));
+                } else {
+                    $('#profileSection section').eq(1).html($("#" + page + "Article").html());
+                }
+            }
+
+        } else {
+            alert('Влезте в профила си, за да видите любимите си продукти!');
+            location.replace('#loginRegister');
+            return;
+        }
+
         $('main').html($('#profileDiv').html());
         $('#profileDiv article').hide();
-        $('#profileSection section').eq(1).html($("#" + page + "Article").html());
         $('main').html($('#profileDiv').html());
-
-        var username = JSON.parse(sessionStorage.getItem('loggedUser'));
         $('#username').val(username.username);
         loadGeneralSettings(username);
+
+
+        $('.editAddress, .editCard').on('click', editCardOrAddress);
+        $('.deleteAddress, .deleteCard').on('click', deleteCardOrAddress);
+
 
         //changing settings
         $('#savePersonalInfo').on('click', changeSettings);
         $('#saveNewPass').on('click', changePass);
+
+        $('#addCard').on('click', function () {
+            var span = $('<span>✔</span>');
+            var html = $('<div><p>Име: <input type="text"/></p><p>Номер <br/> на картата: <input type="text"/></p><p>Валидна до: <input type="date"/></p><p style="color:#9d0052; font-size:14px;">Всички полета са задължителни!</p></div>');
+            html.append(span);
+            $('#cards').append(html);
+
+            $('#cards span').on('click', function () {
+                var name = $('#cards input').eq(0).val();
+                var cardNumber = $('#cards input').eq(1).val();
+                var validDate = $('#cards input').eq(2).val();
+                if (name == '' || cardNumber == '' || validDate == '') {
+                    alert('Непопълнени задължителни полета!');
+                    return;
+                } else {
+                    if (userStorage.addCard(username.id, name, cardNumber, validDate)) {
+                        alert('Картата беше добавена успешно!');
+                        $('#cards input').val('');
+                        settingController(page);
+                    }
+
+                }
+            })
+
+
+        })
+
+        $('#addAddress').on('click', function () {
+            var span = $('<span>✔</span>');
+            var html = $('<div> <p>Име: <input type="text"/></p><p>Телефонен <br/> номер: <input type="text"/></p><p>Град: <input type="text"/></p><p>Пощенски <br/> код: <input type="text"/></p><p>Улица: <input type="text"/></p><p style="color:#9d0052; font-size:14px;">Всички полета са задължителни!</p></div>');
+            html.append(span);
+            $('#address').append(html);
+
+            $('#address span').on('click', function () {
+                var name = $('#address input').eq(0).val();
+                var telephone = $('#address input').eq(1).val();
+                var city = $('#address input').eq(2).val();
+                var postalCode = $('#address input').eq(3).val();
+                var street = $('#address input').eq(4).val();
+
+                if (name == '' || telephone == '' || city == '' || postalCode == '' || street == '') {
+                    alert('Непопълнени задължителни полета!');
+                    return;
+                } else {
+
+                    if (userStorage.addAddress(username.id, name, telephone, city, postalCode, street)) {
+                        alert('Промените бяха извършени успешно!');
+                        $('#address input').val('');
+                        settingController(page);
+                    }
+                }
+            })
+        })
 
     })
 }
@@ -78,4 +158,28 @@ function changePass(event) {
         alert("Невалидни данни! Опитайте отново!");
     }
     $('input[type=password]').val('');
+}
+
+
+function deleteCardOrAddress() {
+    var tr = $(this).parent().parent().remove();
+    var cardOrAddress = $(this).attr('class').substring(6);
+    var username = JSON.parse(sessionStorage.getItem('loggedUser'));
+
+    if (cardOrAddress == 'Card') {
+        var cardNumber = $(this).parent().parent().children().eq(1).text();
+        var expirationDate = $(this).parent().parent().children().eq(2).text();
+        userStorage.deleteCard(username.id, cardNumber, expirationDate);
+    } else {
+        var city = $(this).parent().parent().children().eq(2).text();
+        var street = $(this).parent().parent().children().eq(4).text();
+        userStorage.deleteAddress(username.id, city, street);
+    }
+
+}
+
+
+function editCardOrAddress() {
+
+
 }

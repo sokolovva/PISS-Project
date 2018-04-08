@@ -96,14 +96,35 @@ var userStorage = (function () {
     };
 
 
-    UserStorage.prototype.addAddress = function (userId, name, surname, phoneNumber, city, postcode, streetAddress) {
+    UserStorage.prototype.addAddress = function (userId, name, phoneNumber, city, postcode, streetAddress) {
         var index = this._users.findIndex(user => user.id == userId);
 
         if (index != -1) {
-            var newAddress = new Address(name, surname, phoneNumber, city, postcode, streetAddress);
+            var newAddress = new Address(name, phoneNumber, city, postcode, streetAddress);
             this._users[index].addresses.push(newAddress);
+            sessionStorage.setItem('loggedUser', JSON.stringify(this._users[index]));
             localStorage.setItem('users', JSON.stringify(this._users));
             return true;
+        }
+
+        return false;
+    };
+
+
+    UserStorage.prototype.deleteAddress = function (userId, city, streetAddress) {
+        var user = this._users.find(user => user.id == userId);
+
+        if (user) {
+            var index = user.addresses.findIndex(a => {
+                return a.city == city && a.streetAddress == streetAddress;
+            })
+            if (index != -1) {
+                user.addresses.splice(index, 1);
+                sessionStorage.setItem('loggedUser', JSON.stringify(user));
+                localStorage.setItem('users', JSON.stringify(this._users));
+                return true;
+            }
+
         }
 
         return false;
@@ -116,8 +137,30 @@ var userStorage = (function () {
         if (index != -1) {
             var newCard = new Card(nameOnCard, cardNumber, expirationDate);
             this._users[index].cards.push(newCard);
+            sessionStorage.setItem('loggedUser', JSON.stringify(this._users[index]));
             localStorage.setItem('users', JSON.stringify(this._users));
             return true;
+        }
+
+        return false;
+    };
+
+
+
+    UserStorage.prototype.deleteCard = function (userId, cardNumber, expirationDate) {
+        var user = this._users.find(user => user.id == userId);
+
+        if (user) {
+            var index = user.cards.findIndex(c => {
+                return c.cardNumber == cardNumber && c.expirationDate == expirationDate;
+            })
+            if (index != -1) {
+                user.cards.splice(index, 1);
+                sessionStorage.setItem('loggedUser', JSON.stringify(user));
+                localStorage.setItem('users', JSON.stringify(this._users));
+                return true;
+            }
+
         }
 
         return false;
@@ -181,5 +224,11 @@ var userStorage = (function () {
         this.expirationDate = expirationDate;
     }
 
+
+
     return new UserStorage();
 })();
+
+userStorage.addAddress(1, 'petya', '094938', 'sofia', '1840', 'nishava 40');
+
+userStorage.addCard(1, 'petya sokolova', '43242424432', '12321');

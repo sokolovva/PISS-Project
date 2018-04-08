@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="bg">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -245,7 +246,7 @@
             <input id='regPass'  type="password" placeholder="Парола" />
             <br/>
             <div id='conditions'>
-            <input type="checkbox" checked>Съгласен съм с <a href=''>Общите условия</a> на Fashion Days.
+            <input type="checkbox" id='conditionCheckbox'checked>Съгласен съм с <a href='#generalCondition'>Общите условия</a> на Fashion Days.
             </div>
             <br/>
             <button id="register">РЕГИСТРИРАЙ СЕ</button>
@@ -256,11 +257,21 @@
 
     <div id='faq'>
         <div id='helpOptions'>
-            <a href="#help"><button id="faqButton">ЧЕСТО ЗАДАВАНИ ВЪПРОСИ</button></a>
-            <a href="#forUs"><button>ЗА НАС</button></a>
-            <a href="#contact"> <button>ЗА КОНТАКТ</button></a>
-            <a href="#condition"><button>УСЛОВИЯ ЗА ВРЪЩАНЕ</button></a>
-           <a href="#generalCondition"> <button>ОБЩИ УСЛОВИЯ</button></a>
+            <a href="#help">
+                <button id="faqButton">ЧЕСТО ЗАДАВАНИ ВЪПРОСИ</button>
+            </a>
+            <a href="#forUs">
+                <button>ЗА НАС</button>
+            </a>
+            <a href="#contact">
+                <button>ЗА КОНТАКТ</button>
+            </a>
+            <a href="#condition">
+                <button>УСЛОВИЯ ЗА ВРЪЩАНЕ</button>
+            </a>
+            <a href="#generalCondition">
+                <button>ОБЩИ УСЛОВИЯ</button>
+            </a>
         </div>
 
         <section id='faqSection'>
@@ -547,13 +558,58 @@
                 <!-- todo: adding data with handlebars -->
             </article>
 
-            <article id='addressesArticle'>
-                <!-- todo: adding data with handlebars -->
-            </article>
 
-            <article id='cardsArticle'>
-                <!-- todo: adding data with handlebars -->
-            </article>
+            <script type='text/template' id='adressessTemplate'>
+                <div id='address'>
+                    <h1>АДРЕСИ<h1>
+                        <table>
+                            <tr>
+                                <th>Име</th>
+                                <th>Телефонен номер</th>
+                                <th>Град</th>
+                                <th>Пощенски адрес</th>
+                                <th>Улица</th>
+                                <th colspan="2"></th>
+                            </tr>
+                            {{#each address}}
+                            <tr>
+                                <td>{{fullName}}</td>
+                                <td>{{phoneNumber}}</td>
+                                <td>{{city}}</td>
+                                <td>{{postcode}}</td>
+                                <td>{{streetAddress}}</td>
+                                <td><button class='editAddress'>Редактирай</button></td>
+                                <td><button class='deleteAddress'>Изтрий</button></td>
+                            </tr>
+                            {{/each}}
+                        </table>
+                        <button id='addAddress'>ДОБАВИ АДРЕС</button>
+                    </div>
+        </script>
+
+            <script type='text/template' id='cardsTemplate'>
+                <div id='cards'>
+                        <h1>КАРТИ<h1>
+                        <table>
+                                <tr>
+                                    <th>Име</th>
+                                    <th>Номер на карта</th>
+                                    <th>Валидна до</th>
+                                    <th colspan="2"></th>    
+                                    </tr>
+                            {{#each cards}}
+                            <tr>
+                                <td>{{nameOnCard}}</td>
+                                <td>{{cardNumber}}</td>
+                                <td>{{expirationDate}}</td>
+                                <td><button class='editCard'>Редактирай</button></td>
+                                <td><button class='deleteCard'>Изтрий</button></td>
+                            </tr>
+                            {{/each}}
+                        </table>
+                        <button id='addCard'>ДОБАВИ КАРТА</button>
+                    </div>
+        </script>
         </section>
     </div>
 
@@ -565,6 +621,88 @@
     </div>
 
     <div id="mainMenuB">
+    </div>
+
+
+    <div id='filterTemplate'>
+        <div>
+            <form action="" id='filters'>
+                <h1>ФИЛТРИ</h1>
+                <h3>ПОЛ</h3>
+                <br/>
+                <input type="checkbox" value='f'>Жени
+                <br/>
+                <input type="checkbox" value='m'>Мъже
+                <br/>
+                <br/>
+
+                <h2>КАТЕГОРИИ</h2>
+                <h3>ОБУВКИ</h3>
+                <br/>
+                <input type="checkbox" value='classicshoes'>Класически обувки
+                <br/>
+                <input type="checkbox" value='boots'>Ботуши
+                <br/>
+                <input type="checkbox" value='sportshoe'>Спортни обувки
+                <br/>
+                <br/>
+
+                <h3>ДРЕХИ</h3>
+                <br/>
+                <input type="checkbox" value='blouse'>Блузи
+                <br/>
+                <input type="checkbox" value='jeans'>Дънки
+                <br/>
+                <input type="checkbox" value='jacket'>Якета
+                <br/>
+                <input type="checkbox" value='shirts'>Ризи
+                <br/>
+                <input type="checkbox" value='tshirt'>Тениски
+                <br/>
+                <input type="checkbox" value='coat'>Палта
+                <br />
+                <br/>
+
+                <h3>АКСЕСОАРИ</h3>
+                <br/>
+                <input type="checkbox" value='belt'>Колани
+                <br/>
+                <input type="checkbox" value='watch'>Часовници
+                <br/>
+                <input type="checkbox" value='scarf'>Шалове
+                <br/>
+                <input type="checkbox" value='sunglass'>Слънчеви очила
+                <br/>
+                <br/>
+
+                <h3>ЧАНТИ</h3>
+                <br/>
+                <input type="checkbox" value='backpack'>Раници
+                <br/>
+                <input type="checkbox" value='bag'>Чанти
+                <br />
+                <br/>
+
+                <h3>МАРКИ</h3>
+                <br/>
+                <input type="checkbox" value='next'>NEXT
+                <br/>
+                <input type="checkbox" value='esprit'>Esprit
+                <br/>
+
+                <input type="checkbox" value='puma'>Puma
+                <br/>
+
+                <input type="checkbox" value='guess'>Guess
+                <br/>
+
+                <input type="checkbox" value='calvinklein'>Calvin Klein
+                <br/>
+                <br/>
+            </form>
+        </div>
+
+        <div id='selections'></div>
     </div>
 
 </body>

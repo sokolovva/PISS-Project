@@ -344,7 +344,7 @@ button{
 }
 
 
-#profileDiv{
+#profileDiv, #filterTemplate{
 display:none;
 }
 
@@ -420,4 +420,79 @@ display:none;
 
 #categories a:hover{
     color:#9d0052;
+}
+
+
+
+#filters{
+   float:left;
+    position: relative;
+    top:160px;
+    left: 0px;
+    border: 1px ridge #9d0052;
+    width: 20%;
+    padding:1em;
+
+    
+}
+
+#filters h1, h2{
+    font-weight: bold;
+    color:#9d0052;
+}
+
+#selections{
+    position: relative;
+    top:160px;
+    float:right;
+    width: 78%;
+    border:1px ridge #9d0052;
+    height: 865px;
+}
+
+
+#address table, #cards table{
+    margin: 1em;
+    padding: 1em;
+    width: 93%;
+    height:auto;
+}
+
+#address table td, #cards table td{
+    border:1px ridge gray;
+    padding: 1em;
+    color:black;
+}
+
+#cards button{
+    top:0px;
+    width: 170px;
+    height: 30px;
+
+}
+
+#address #addAddress{
+    width: 170px;
+    height: 30px;
+}
+#address button{
+    top:0px;
+    width:110px;
+    height: 30px;
+}
+#cards span, #address span{
+    color: #9d0052;
+    cursor: pointer;
+    font-size: 3em;
+    position: relative;
+    left: 300px;
+    top: -76px;
+    background-color: white;
+  border-radius: 40%;
+
+}
+
+
+#cards p, #address p{
+    padding:0.2em;
 }

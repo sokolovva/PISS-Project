@@ -1,11 +1,12 @@
 var CartStorage = (function () {
     function CartStorage() {
-        this._items = [];
+       this._items=[];
         this.total = 0;
     }
 
 
     CartStorage.nextId = 1;
+
 
 
     CartStorage.prototype.addCartItem = function (product, quantity) {

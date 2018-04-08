@@ -43,8 +43,13 @@ function loginRegisterController(){
                 event.preventDefault();
                 var user = $('#regUser').val();
                 var pass = $('#regPass').val();
-    
+                var conditionsAccepted = $("input[id='conditionCheckbox']:checked").length;
                 if(userStorage.register(user, pass)){
+
+                    if(conditionsAccepted==0){
+                        alert("Не сте приели условията!");
+                        return;
+                    }
                     alert('Вие се регистрирахте успешно!');
                     $('#loginDiv').show(100);
                     $('#registerDiv').hide(100);

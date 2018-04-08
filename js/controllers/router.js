@@ -12,19 +12,28 @@ $(function () {
             case 'help':
                 faqController();
                 break;
-            case 'contact':          
-            case 'condition':     
-            case 'forUs':     
+            case 'women':
+                womenController();
+                break;
+            case 'men':
+                menController();
+                break;
+            case 'contact':
+            case 'condition':
+            case 'forUs':
             case 'generalCondition':
                 helpController(page);
                 break;
             case 'logout':
                 logoutController();
                 break;
+                case 'cart':
+                cartController();
+                break;
             case 'settings':
             case 'orders':
             case 'favourites':
-            case 'adresses':   
+            case 'adresses':
             case 'cards':
                 settingController(page);
                 break;

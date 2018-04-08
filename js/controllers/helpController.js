@@ -13,3 +13,18 @@ function helpController(page) {
         $('main').html($('#helpOptions').html() + $('#' + page + 'Section').html());
     })
 }
+
+
+function cartController() {
+    $(function () {
+        var user = sessionStorage.getItem('loggedUser');
+        if (user) {
+
+        } else {
+            alert('Влезте в профила си, за да започнете пазаруването!');
+            location.replace('#loginRegister');
+            return;
+        }
+    })
+
+}
