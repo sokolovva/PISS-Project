@@ -12,9 +12,9 @@ $(function () {
             case 'help':
                 faqController();
                 break;
-            case 'women':
-            case 'men':
-                womenMenController(page);
+            case 'Women':
+            case 'Men':
+                productController(page);
                 break;
             case 'contact':
             case 'condition':
@@ -42,5 +42,6 @@ $(function () {
     }
 
     window.addEventListener('hashchange', router);
+    window.addEventListener('load', router);
     router();
 });

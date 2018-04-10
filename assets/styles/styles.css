@@ -448,7 +448,7 @@ display:none;
     color:#9d0052;
 }
 
-#menSelections, #womenSelections{
+#menSelections, #womenSelections, #productSelections{
     position: relative;
     top:160px;
     float:right;
@@ -516,7 +516,7 @@ display:none;
 }
 
 
-#womenSelections tr, #menSelections tr{
+#womenSelections tr, #menSelections tr, #productSelections tr{
    display:inline-block;
    width: 250px;
    margin:1.1em;
@@ -540,7 +540,7 @@ display:none;
     width:190px;
 }
 
-#womenSelections span, #menSelections span, #actualSelections span{
+#womenSelections span, #menSelections span, #productSelections span, #actualSelections span{
     display: inline-block;
     background-color:black;
     color:#9d0052;

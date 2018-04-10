@@ -1,15 +1,15 @@
 var productStorage = (function () {
     function ProductStorage() {
-     
     }
-    var products=[];
-    if(products.length==0 && !JSON.parse(localStorage.getItem('products'))){
-        $.get('http://localhost/fashiondaysproject/json/products.json').then(function (data) {
-            products = products.concat(JSON.parse(data));
+
+    var products = [];
+    if (products.length == 0 || !JSON.parse(localStorage.getItem('products'))) {
+        $.get('http://localhost:8080/json/products.json').then(function (data) {
+            products = products.concat(data);
             localStorage.setItem('products', JSON.stringify(products));
         })
-    }else{
-        products=JSON.parse(localStorage.getItem('products'));
+    } else {
+        products = JSON.parse(localStorage.getItem('products'));
     }
    
 
@@ -17,12 +17,10 @@ var productStorage = (function () {
 
 
     ProductStorage.prototype.listAll = function () {
-      products.forEach(item => {
-          console.log(item);
-      });
-            
-    
-    }
+        products.forEach(item => {
+            console.log(item);
+        });
+    };
 
 
     ProductStorage.prototype.deleteProduct = function (id) {
@@ -35,8 +33,16 @@ var productStorage = (function () {
         }
     };
 
-    
 
+    ProductStorage.prototype.filterSelectedProducts = function (filters) {
+        var result = products.filter(function (prod) {
+            return (prod.categories.some(gender => gender == filters.gender) &&
+                ((filters.brand != undefined && filters.brand.length > 0) ? filters.brand.includes(prod.brand.toLowerCase()) : true) &&
+                ((filters.category != undefined && filters.category.length > 0) ? filters.category.includes(prod.category) : true));
+        });
+
+        return result;
+    };
 
 
     return new ProductStorage();
