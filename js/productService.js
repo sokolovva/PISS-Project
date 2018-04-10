@@ -91,58 +91,58 @@ productStorage._products = [
     {
         id: 1,
         name: 'bluza',
-        brand: 'boss',
-        category: 'bluzi',
+        brand: 'puma',
+        category: 'blouse',
         price: 10,
         gender: 'f'
     },
     {
         id: 2,
         name: 'riza',
-        brand: 'teodor',
-        category: 'rizi',
+        brand: 'next',
+        category: 'shirts',
         price: 20,
         gender: 'm'
     },
     {
         id: 3,
         name: 'riza',
-        brand: 'andrews',
-        category: 'rizi',
+        brand: 'esprit',
+        category: 'shirts',
         price: 30,
         gender: 'f'
     },
     {
         id: 4,
-        name: 'bluza',
-        brand: 'hm',
-        category: 'bluzi',
+        name: 'guess',
+        brand: 'guess',
+        category: 'blouse',
         price: 1,
         gender: 'm'
     },
     {
         id: 5,
         name: 'pantalon',
-        brand: 'boss',
-        category: 'pantaloni',
+        brand: 'next',
+        category: 'jeans',
         price: 30,
         gender: 'm'
     },
     {
         id: 6,
         name: 'qke',
-        brand: 'pl',
-        category: 'qketa',
+        brand: 'next',
+        category: 'jeans',
         price: 14,
         gender: 'f'
     }
 ];
-
-var filters = {
-    gender: ['f'],
-    brand: ['boss', 'andrews'],
-    category: ['bluzi', 'rizi']
-
-};
-
-console.log(productStorage.filterSelectedProducts(filters));
+//
+// var filters = {
+//     gender: ['f'],
+//     brand: ['boss', 'andrews'],
+//     category: ['bluzi', 'rizi']
+//
+// };
+//
+// console.log(productStorage.filterSelectedProducts(filters));
