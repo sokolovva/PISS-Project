@@ -1,4 +1,4 @@
-$(function(){
+/* $(function(){
     $('#mainMenu-women').hover(function(){
         $('#mainMenuW').toggle();
     });
@@ -12,5 +12,5 @@ $(function(){
     });
 
 });
-
+ */
  

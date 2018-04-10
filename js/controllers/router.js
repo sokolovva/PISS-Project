@@ -13,10 +13,8 @@ $(function () {
                 faqController();
                 break;
             case 'women':
-                womenController();
-                break;
             case 'men':
-                menController();
+                womenMenController(page);
                 break;
             case 'contact':
             case 'condition':

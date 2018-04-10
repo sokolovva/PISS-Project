@@ -17,6 +17,7 @@ a {
 #headerNav, #mainNav{
     position: fixed;
     z-index: 100;
+    top: 0px;
 }
 
 #headerNav{ 
@@ -40,6 +41,7 @@ a>h1>span:last-child{
     font-size:2em;
     font-weight: bold;
 }
+
 
 #search{
     position: relative;
@@ -200,14 +202,17 @@ footer>div{
     display: none;
 }
 
-#mainSection article{
-    
-    height: 450px;
-    border-bottom:1px solid black;
-}
 
 #mainSection h4{
     margin: 1em 0em;
+}
+
+#mainSection{
+    position: relative;
+    top:140px;
+    text-decoration: underline;
+    font-weight: bold;
+    text-align: center;
 }
 
 
@@ -350,7 +355,7 @@ display:none;
 
 #profileSection aside{
     width:20%;
-    background-color:#E6E6E6;
+  
     height: 1000px;
     display: inline-block;    
 }
@@ -389,7 +394,7 @@ display:none;
 
 #profileSection{
     position: relative;
-    top:150px;
+    top:165px;
     
 }
 
@@ -398,6 +403,8 @@ display:none;
     width: 99%;
     margin-bottom:2em;
     padding: 1em;
+    overflow: auto;
+    max-height: 1000px;
    
 }
 
@@ -429,9 +436,9 @@ display:none;
     position: relative;
     top:160px;
     left: 0px;
-    border: 1px ridge #9d0052;
     width: 20%;
     padding:1em;
+    max-height: 1000px;
 
     
 }
@@ -441,40 +448,43 @@ display:none;
     color:#9d0052;
 }
 
-#selections{
+#menSelections, #womenSelections{
     position: relative;
     top:160px;
     float:right;
     width: 78%;
-    border:1px ridge #9d0052;
-    height: 865px;
+    max-height: 1000px;
+    overflow:auto;
 }
 
 
 #Address table, #Card table{
-    margin: 1em;
-    padding: 1em;
+    margin: 1em 0em;
+    padding: 0.5em 1.8em;
     width: 93%;
     height:auto;
 }
 
 #Address table td, #Card table td{
     border:1px ridge gray;
-    padding: 1em;
+    padding: 0.5em;
     color:black;
+    text-align: center;
 }
 
 #Card button{
     top:0px;
-    width: 170px;
-    height: 30px;
+    width: 110px;
+    height: 40px;
 
 }
 
 #Address #addAddress{
-    width: 170px;
-    height: 30px;
+    width: 106px;
+    height: 40px;
 }
+
+
 #Address button{
     top:0px;
     width:110px;
@@ -496,3 +506,65 @@ display:none;
 #Card p, #Address p{
     padding:0.2em;
 }
+
+.saveAddress, .saveCard{
+    display:none;
+}
+
+#womenSelections, #menSelections{
+    display: none;
+}
+
+
+#womenSelections tr, #menSelections tr{
+   display:inline-block;
+   width: 250px;
+   margin:1.1em;
+   text-align: center;
+   padding:1em;
+   font-weight: bold;
+   cursor: pointer;
+}
+#actualSelections tr{
+    display:inline-block;
+    width: 190px;
+    margin:0.5em;
+    text-align: center;
+    padding:0.5em;
+    font-weight: bold;
+    cursor: pointer;
+
+}
+
+#actualSelections img{
+    width:190px;
+}
+
+#womenSelections span, #menSelections span, #actualSelections span{
+    display: inline-block;
+    background-color:black;
+    color:#9d0052;
+    width:250px;
+    height: 30px;
+    line-height: 2em;
+}
+
+#item{
+    display:none;
+}
+
+#actualSelections div{
+    width: 49%;
+    display: inline-block;
+    border:1px solid black;
+    height: 1000px;
+    overflow: auto;
+    margin:1em 0em;
+}
+
+
+
+#actualSelections div:last-child h2{
+    color:#6495ED;
+}
+

@@ -131,6 +131,29 @@ var userStorage = (function () {
     };
 
 
+    UserStorage.prototype.editAddress = function (userId, currCity, currStreet, newAddress) {
+        var user = this._users.find(user => user.id == userId);
+
+        if (user) {
+            var address = user.addresses.find(a => {
+                return a.city == currCity && a.streetAddress == currStreet;
+            })
+            if (address) {
+                address.fullName = newAddress[0];
+                address.phoneNumber = newAddress[1];
+                address.postcode = newAddress[2];
+                address.streetAddress = newAddress[3];
+                sessionStorage.setItem('loggedUser', JSON.stringify(user));
+                localStorage.setItem('users', JSON.stringify(this._users));
+                return true;
+            }
+
+        }
+
+        return false;
+    };
+
+
     UserStorage.prototype.addCard = function (userId, nameOnCard, cardNumber, expirationDate) {
         var index = this._users.findIndex(user => user.id == userId);
 
@@ -156,6 +179,27 @@ var userStorage = (function () {
             })
             if (index != -1) {
                 user.cards.splice(index, 1);
+                sessionStorage.setItem('loggedUser', JSON.stringify(user));
+                localStorage.setItem('users', JSON.stringify(this._users));
+                return true;
+            }
+
+        }
+
+        return false;
+    };
+
+    UserStorage.prototype.editCard = function (userId, currNumber, currExpDate, newCard) {
+        var user = this._users.find(user => user.id == userId);
+
+        if (user) {
+            var card = user.cards.find(a => {
+                return a.cardNumber == currNumber && a.expirationDate == currExpDate;
+            })
+            if (card) {
+                card.nameOnCard = newCard[0];
+                card.cardNumber = newCard[1];
+                card.expirationDate = newCard[2];
                 sessionStorage.setItem('loggedUser', JSON.stringify(user));
                 localStorage.setItem('users', JSON.stringify(this._users));
                 return true;

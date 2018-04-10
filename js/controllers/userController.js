@@ -85,7 +85,7 @@ function changeSettings(event) {
     var gender = $('input[name=gender]:checked').val();
 
     if (userStorage.changeSettings(firstName, surname, newUsername, gender)) {
-        $('input[type=text]').val('');
+        $('#firstName,#surname, #username').val('');
         alert("Вашите данни бяха променени успешно!");
     } else {
         alert("Непопълнени задължителни полета!");
@@ -131,8 +131,56 @@ function deleteCardOrAddress() {
 
 function editCardOrAddress() {
 
+    var cardOrAddress = $(this).attr('class').substring(4);
+    var username = JSON.parse(sessionStorage.getItem('loggedUser'));
+    var page = location.hash.slice(1);
+    var id;
+
+    if (cardOrAddress == 'Card') {
+        var cardNumber = $(this).parent().parent().children().eq(1).text();
+        var expirationDate = $(this).parent().parent().children().eq(2).text();
+        id = 2;
+    } else {
+        var city = $(this).parent().parent().children().eq(2).text();
+        var street = $(this).parent().parent().children().eq(4).text();
+        id = 4;
+    }
+    for (var i = 0; i <= id; i++) {
+        $(this).parent().parent().children().eq(i).html('<input type="text" size="12"/>');
+    }
+
+    $(".save" + cardOrAddress).show();
+    $(".edit" + cardOrAddress).hide();
+
+    $(".save" + cardOrAddress).on('click', function () {
+        var newCard = [];
+        var inputs = $('#' + cardOrAddress + ' input');
+        for (var i = 0; i < inputs.length; i++) {
+            if (inputs.eq(i).val() != '') {
+                newCard.push(inputs.eq(i).val());
+            } else {
+                alert('Непопълнени задължителни полета');
+            }
+        }
+
+        if (cardOrAddress == 'Card') {
+            if (userStorage.editCard(username.id, cardNumber, expirationDate, newCard)) {
+                alert('Промените бяха направени успешно!');
+                settingController(page);
+            }
+        } else {
+            if (userStorage.editAddress(username.id, city, street, newCard)) {
+                alert('Промените бяха направени успешно!');
+                settingController(page);
+            }
+        }
+
+
+    })
 
 }
+
+
 
 
 
