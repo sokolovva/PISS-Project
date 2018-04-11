@@ -9,73 +9,72 @@ function logoutController() {
 };
 
 function settingController(page) {
-        var username = JSON.parse(sessionStorage.getItem('loggedUser'));
-        if (username) {
-            var favorites = username.favorites;
-            var cards = username.cards;
-            var address = username.addresses;
-            switch (page) {
-                case 'cards':
-                    var cardTemplate = $('#cardsTemplate').text();
-                    var cardPage = Handlebars.compile(cardTemplate);
-                    $('#profileSection section').eq(1).html($(cardPage({ cards: cards })));
-                    break;
-                case 'adresses':
-                    var addressTemplate = $('#adressessTemplate').text();
-                    var addressPage = Handlebars.compile(addressTemplate);
-                    $('#profileSection section').eq(1).html($(addressPage({ address: address })));
-                    break;
-                case 'favourites':
-                   
-                        var favTemplate = $('#favTemplate').text();
-                        var favPage = Handlebars.compile(favTemplate);
-                        $('#profileSection section').eq(1).html($(favPage({ favorites: favorites })));
-                        
-                   
-                    break;
-                /* case 'orders':
-                var favoriteTemp = $('#favTemplate').text();
+    var username = JSON.parse(sessionStorage.getItem('loggedUser'));
+    if (username) {
+        var favorites = username.favorites;
+        var cards = username.cards;
+        var address = username.addresses;
+        switch (page) {
+            case 'cards':
+                var cardTemplate = $('#cardsTemplate').text();
+                var cardPage = Handlebars.compile(cardTemplate);
+                $('#profileSection section').eq(1).html($(cardPage({ cards: cards })));
+                break;
+            case 'adresses':
+                var addressTemplate = $('#adressessTemplate').text();
+                var addressPage = Handlebars.compile(addressTemplate);
+                $('#profileSection section').eq(1).html($(addressPage({ address: address })));
+                break;
+            case 'favourites':
+
+                var favTemplate = $('#favTemplate').text();
                 var favPage = Handlebars.compile(favTemplate);
                 $('#profileSection section').eq(1).html($(favPage({ favorites: favorites })));
-                break; */
-                case 'settings':
-                    $('#profileSection section').eq(1).html($("#settingsArticle").html());
-                    break;
-                default:
-                    $('#profileSection section').eq(1).html($("#settingsArticle").html());
 
-            }
+                break;
+            /* case 'orders':
+            var favoriteTemp = $('#favTemplate').text();
+            var favPage = Handlebars.compile(favTemplate);
+            $('#profileSection section').eq(1).html($(favPage({ favorites: favorites })));
+            break; */
+            case 'settings':
+                $('#profileSection section').eq(1).html($("#settingsArticle").html());
+                break;
+            default:
+                $('#profileSection section').eq(1).html($("#settingsArticle").html());
 
-        } else {
-            alert('Влезте в профила си, за да видите любимите си продукти!');
-            location.replace('#loginRegister');
-            return;
         }
 
+    } else {
+        alert('Влезте в профила си, за да видите любимите си продукти!');
+        location.replace('#loginRegister');
+        return;
+    }
 
-        $('main').html($('#profileDiv').html());
-        $('#profileDiv article').hide();
-        $('main').html($('#profileDiv').html());
-        $('#username').val(username.username);
-        loadGeneralSettings(username);
+
+    $('main').html($('#profileDiv').html());
+    $('#profileDiv article').hide();
+    $('main').html($('#profileDiv').html());
+    $('#username').val(username.username);
+    loadGeneralSettings(username);
 
 
-        //editing or deleting existing card or address
-        $('.editAddress, .editCard').on('click', editCardOrAddress);
-        $('.deleteAddress, .deleteCard').on('click', deleteCardOrAddress);
+    //editing or deleting existing card or address
+    $('.editAddress, .editCard').on('click', editCardOrAddress);
+    $('.deleteAddress, .deleteCard').on('click', deleteCardOrAddress);
 
-        //changing settings
-        $('#savePersonalInfo').on('click', changeSettings);
-        $('#saveNewPass').on('click', changePass);
+    //changing settings
+    $('#savePersonalInfo').on('click', changeSettings);
+    $('#saveNewPass').on('click', changePass);
 
-        //adding new card or address
-        $('#addCard').on('click', addCardorAddress);
-        $('#addAddress').on('click', addCardorAddress);
+    //adding new card or address
+    $('#addCard').on('click', addCardorAddress);
+    $('#addAddress').on('click', addCardorAddress);
 
-        //adding in cart or deleting item from favourites
-        $('.deleteItem').on('click', favouritesController);
-        $('.addInCart').on('click', favouritesController);
-    
+    //adding in cart or deleting item from favourites
+    $('.deleteItem').on('click', favouritesController);
+    $('.addInCart').on('click', favouritesController);
+
 }
 
 function loadGeneralSettings(username) {
@@ -245,22 +244,22 @@ function addCardorAddress() {
 }
 
 
-function favouritesController(){
+function favouritesController() {
     var user = JSON.parse(sessionStorage.getItem('loggedUser'));
-    
-    if($(this).attr('class')=='deleteItem'){    
-        var title=$(this).parent().prev().children().eq(0).text();
-        var product=productStorage.findItem(title);
-        if(userStorage.deleteFromFavourites(user.id, product)){
-            
+
+    if ($(this).attr('class') == 'deleteItem') {
+        var title = $(this).parent().prev().children().eq(0).text();
+        var product = productStorage.findItem(title);
+        if (userStorage.deleteFromFavourites(user.id, product)) {
+
             $(this).parent().parent().remove();
         }
 
     } else {
 
     }
-    
-     
+
+
 
 }
 

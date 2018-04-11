@@ -22,7 +22,7 @@ var productStorage = (function () {
         products = JSON.parse(localStorage.getItem('products'));
     }
 
-
+    
     ProductStorage.nextId = 1;
 
 
