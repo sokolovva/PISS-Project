@@ -44,4 +44,5 @@ $(function () {
     window.addEventListener('hashchange', router);
     window.addEventListener('load', router);
     router();
+    searchController();
 });

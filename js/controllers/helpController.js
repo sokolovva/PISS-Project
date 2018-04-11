@@ -4,13 +4,14 @@ function faqController() {
         $('main').html($('#helpOptions').html() + $('#faqSection').html());
         $('main dd').toggle();
         $('main dt').on('click', function () { $(this).next().toggle() });
-
+        window.scrollTo(0, 0);
     })
 }
 
 function helpController(page) {
     $(function () {
         $('main').html($('#helpOptions').html() + $('#' + page + 'Section').html());
+        window.scrollTo(0, 0);
     })
 }
 
