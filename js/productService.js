@@ -1,27 +1,27 @@
 var productStorage = (function () {
     function ProductStorage() {
-     
+
     }
-    var products=[];
-    if(products.length==0 && !JSON.parse(localStorage.getItem('products'))){
+    var products = [];
+    if (products.length == 0 && !JSON.parse(localStorage.getItem('products'))) {
         $.get('http://localhost/fashiondaysproject/json/products.json').then(function (data) {
             products = products.concat(JSON.parse(data));
             localStorage.setItem('products', JSON.stringify(products));
         })
-    }else{
-        products=JSON.parse(localStorage.getItem('products'));
+    } else {
+        products = JSON.parse(localStorage.getItem('products'));
     }
-   
+
 
     ProductStorage.nextId = 1;
 
 
     ProductStorage.prototype.listAll = function () {
-      products.forEach(item => {
-          console.log(item);
-      });
-            
-    
+        products.forEach(item => {
+            console.log(item);
+        });
+
+
     }
 
 
@@ -35,7 +35,14 @@ var productStorage = (function () {
         }
     };
 
-    
+    ProductStorage.prototype.findItem = function (title) {
+        var product = products.find(p => {
+            return p.name == title;
+        })
+        return product;
+    }
+
+
 
 
 

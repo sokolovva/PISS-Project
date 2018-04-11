@@ -43,6 +43,7 @@ function homeController() {
         }
 
         $('#actualSelections div').eq(1).append($(selectionsPage({ items: items })));
+        $('.items').on('click', itemController);
     })
 }
 
@@ -85,20 +86,20 @@ function womenMenController(page) {
         $('#menSelections').toggle();
     }
 
-    /* 
-        $('.items').on('click', function () {
-            $('#womenSelections').toggle();
-            $('#item').toggle(); */
 
-    //replace location, with items name;
-    //location.replace('#women?product=itemName');
+        $('.items').on('click', itemController);
 
 
 
 }
 
 
-function menController() {
-    $('main').html($('#filterTemplate').html());
-    $('#menSelections').toggle();
+function itemController() {
+    var title=$(this).children().eq(1).text();
+    var product = productStorage.findItem(title);
+
+    var itemTemplate = $('#itemTemplate').text();
+    var itemPage = Handlebars.compile(itemTemplate);
+    $('main').html($(itemPage(product)));
+
 }

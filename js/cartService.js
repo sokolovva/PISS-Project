@@ -83,14 +83,3 @@ var CartStorage = (function () {
     return CartStorage;
 })();
 
-var a = new CartStorage();
-a.addCartItem({name: 'teniska', price: 12}, 2);
-a.addCartItem({name: 'bluza', price: 25}, 1);
-a.addCartItem({name: 'dynki', price: 30}, 1);
-a.addCartItem({name: 'pulover', price: 40}, 1);
-console.log(a);
-console.log();
-
-a.changeCartItem(1, 3);
-a.removeCartItem(2);
-console.log(a);

@@ -568,3 +568,12 @@ display:none;
     color:#6495ED;
 }
 
+
+#singleItem{
+    width:76%;
+}
+
+#minImgs img{
+    float: left;
+    display: block;
+}
