@@ -24,6 +24,7 @@
     <script src="js/controllers/helpController.js"></script>
     <script src="js/controllers/userController.js"></script>
     <script src="js/controllers/productController.js"></script>
+    <script src="js/controllers/searchController.js"></script>
 </head>
 
 <body>
@@ -38,11 +39,19 @@
             </a>
 
             <div id='search'>
-                <input type="text" placeholder="Търси в уебсайта..." id='serchItem' maxlength='30' name='seachItem' size=35 style="height:30px">
+                <input type="text" list="productList" placeholder="Търси в уебсайта..." id='searchItem' maxlength='30' name='searchItem' size=35 style="height:30px">
+                <datalist id="productList">
+                </datalist>
                 <button class='pink' id='submit'>
                     <span>&#8981;</span>
                 </button>
             </div>
+
+            <script id="searchTemplate" type="text/x-handlebars-template">
+                {{#each product}}
+                <option value="{{name}}"/>
+                {{/each}}
+            </script>
 
             <div>
                 <ul>
