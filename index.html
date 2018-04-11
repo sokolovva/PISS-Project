@@ -766,13 +766,16 @@
                     <h2>{{brand}}</h2>
                     <p id='itemTitle'>{{name}}</p>
                     <h1>{{skus.0.sale_price}}</h1>
+                    <p class='bold'>Изберете количество:
+                        <input class="bold" id="productQuantity" type="number" name="quantity" min="1" max="10" value="1">
+                    </p>
         
                     <p class='bold'>Размер</p>
                     <div>
                         {{#each sizeAndQuantity as |s|}}
                         <input type='radio'checked name='size' value="{{s.0.size}}"/> {{s.0.size}} {{/each}}
                     </div>
-                    <p>Количество: <input id='quantity' type='text' size='4'/></p>
+                    <!--<p>Количество: <input id='quantity' type='text' size='4'/></p>-->
         
                     <p>Материал: {{content.material}}</p>
                     <p>Произведено в: {{content.origin}}</p>

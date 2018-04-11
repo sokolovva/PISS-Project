@@ -68,27 +68,19 @@ function itemController() {
 
     //adding to cart
 
-    $('#addToCart').on('click', function(){
+    $('#addToCart').on('click', function (event) {
         event.preventDefault();
-        var user = JSON.parse(sessionStorage.getItem('loggedUser'));
+        var quantity = $('#productQuantity').val();
 
-        if(user){
-            var title=$('#itemTitle').text();
-            var size=$('input:checked').val();
-            var quantity = $('#quantity').val();
+        var userId = JSON.parse(sessionStorage.getItem('loggedUser')).id;
 
-            if(quantity!=''){
-                userStorage.addToBasket(user, title,size, quantity);
-            }else{
-                ('#quantity').append($('<p style="color:red"> Въведете количество! </p>'));
-            }
+        if(!!userId) {
+            cartStorage.addCartItem(product, quantity);
         } else {
             alert('Трябва да се логнете, за да добавите продукт в кошницата!');
             location.replace('#loginRegister');
         }
-      
-        
-    })
+    });
 
 
     $('#addFav').on('click', function(){
