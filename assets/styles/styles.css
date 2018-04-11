@@ -661,3 +661,38 @@ display:none;
 .hidden{
     display: none
 }
+
+#addFav~p{
+    display: none;
+}
+
+#favTable{
+    width: 75%;
+}
+
+#favTable button, #deleteAll{
+    position: static;
+    float:right;
+    background-color: #9d0052;
+    border-radius: 8%;
+    width: 100px;
+    height: 40px;
+    margin:0.2em;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+#deleteAll{
+    width: 500px; 
+}
+
+#favTable img{
+    position: relative;
+    top: 50px;
+}
+
+#favTable span{
+    position: relative;
+    top:-44px;
+    line-height: 1.5em;
+}

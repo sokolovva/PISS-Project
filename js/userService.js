@@ -14,6 +14,12 @@ var userStorage = (function () {
         this.name = '';
     }
 
+    function saveChanges(){
+        localStorage.setItem('users', JSON.stringify(this._users));
+        var products=productStorage.getAll();
+        localStorage.setItem('products', JSON.stringify(products));
+    
+    }
 
     function UserStorage() {
 
@@ -28,6 +34,13 @@ var userStorage = (function () {
 
     UserStorage.nextId = 1;
 
+    UserStorage.prototype.addToBasket = function(user, title, size,quantity){
+        var user = this._users.find(u=>u.username==user.username);
+        var product=productStorage.findItem(title);
+        user.basket.addCartItem(product, size, quantity);
+        saveChanges();
+        sessionStorage.setItem('user', JSON.stringify(user));
+    }
 
     UserStorage.prototype.register = function (username, password) {
         if ((username.trim().length == 0) || (password.trim().length < 8)) {
@@ -86,8 +99,12 @@ var userStorage = (function () {
         var index = this._users.findIndex(user => user.id == userId);
 
         if (index != -1) {
+            if(this._users[index].favorites.find(p=>p.id==product.id)!=null){
+                return false;
+            }
             this._users[index].favorites.push(product);
             localStorage.setItem('users', JSON.stringify(this._users));
+            sessionStorage.setItem('loggedUser', JSON.stringify(this._users[index]));
             return true;
 
         }
@@ -95,6 +112,24 @@ var userStorage = (function () {
         return false;
     };
 
+
+    UserStorage.prototype.deleteFromFavourites=function(userId, product){
+        var user = this._users.find(user => user.id == userId);
+        if (user) {
+            if(user.favorites.length!=0){
+                var index=user.favorites.findIndex(p=>p.id==product.id);
+                user.favorites.splice(index,1);
+                localStorage.setItem('users', JSON.stringify(this._users));
+                sessionStorage.setItem('loggedUser', JSON.stringify(user));
+                return true;
+            }
+          
+        }
+
+        return false;
+
+
+    }
 
     UserStorage.prototype.addAddress = function (userId, name, phoneNumber, city, postcode, streetAddress) {
         var index = this._users.findIndex(user => user.id == userId);

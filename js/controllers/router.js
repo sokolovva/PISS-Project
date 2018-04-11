@@ -1,16 +1,10 @@
 $(function () {
-    function itemsHash(){
-        var pages = location.hash.split('=');
-        var page = pages[0].slice(1);
-        var item=pages[1];
-        if(page=='item'){
-            itemController(item);   
-        }
-        
-    }
-    function router() {
 
+    function router() {
+    
+        loadF();
         itemsHash();
+
         var page = location.hash.slice(1);
 
         switch (page) {
@@ -56,4 +50,25 @@ $(function () {
     window.addEventListener('load', router);
     router();
     searchController();
+
+
+
+    function loadF(){
+        if (sessionStorage.getItem('loggedUser')) {
+            var profile = $('<a href="#settings" id="set">&nbsp;<img src="assets/images/profileIcon.png"/><br/><span class="normalWhite">МОЯТ ПРОФИЛ</span></a>');
+            $('#profile').html(profile);
+        };
+    }
+
+    function itemsHash(){
+        var pages = location.hash.split('=');
+        var page = pages[0].slice(1);
+        var item=pages[1];
+        if(page=='item'){
+            itemController(item);   
+        }
+        
+    }
 });
+
+

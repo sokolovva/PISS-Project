@@ -6,14 +6,17 @@ var productStorage = (function () {
     if (products.length == 0 && !JSON.parse(localStorage.getItem('products'))) {
         $.get('http://localhost/fashiondaysproject/json/products.json').then(function (data) {
             products = products.concat(JSON.parse(data));
-            localStorage.setItem('products', JSON.stringify(products));
+
             products.forEach(product => {
-                var random=Math.floor(Math.random()*50);
+                var random = Math.floor(Math.random() * 50);
                 product.sizeAndQuantity = [
-                   [{'size':'S'},{'quantity':random}],
-                   [{'size':'M'},{'quantity':random}],
-                   [{'size':'L'},{'quantity':random}] 
-                ]});
+                    [{ 'size': 'S' }, { 'quantity': random }],
+                    [{ 'size': 'M' }, { 'quantity': random }],
+                    [{ 'size': 'L' }, { 'quantity': random }]
+                ]
+            });
+
+            localStorage.setItem('products', JSON.stringify(products));
         })
     } else {
         products = JSON.parse(localStorage.getItem('products'));
@@ -23,12 +26,8 @@ var productStorage = (function () {
     ProductStorage.nextId = 1;
 
 
-    ProductStorage.prototype.listAll = function () {
-        products.forEach(item => {
-            console.log(item);
-        });
-
-
+    ProductStorage.prototype.getAll = function () {
+       return products.slice();
     }
 
 
@@ -40,6 +39,19 @@ var productStorage = (function () {
         } else {
             throw new Error('there is no product with such ID');
         }
+    };
+
+
+
+    ProductStorage.prototype.changeQuantity = function (id, size, quantity) {
+        var product = products.find(product => product.id == id);
+        var size = product.sizeAndQuantity.find(i => i.size == size);
+        if (Number(size[1].quantity) > Number(quantity)) {
+            Number(size[1].quantity) -= Number(quantity);
+            localStorage.setItem('products', JSON.stringify(products));
+            return true;
+        }
+        return false;
     };
 
     ProductStorage.prototype.findItem = function (title) {

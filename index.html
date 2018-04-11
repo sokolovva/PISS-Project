@@ -39,7 +39,8 @@
             </a>
 
             <div id='search'>
-                <input type="text" list="productList" placeholder="Търси в уебсайта..." id='searchItem' maxlength='30' name='searchItem' size=35 style="height:30px">
+                <input type="text" list="productList" placeholder="Търси в уебсайта..." id='searchItem' maxlength='30' name='searchItem'
+                    size=35 style="height:30px">
                 <datalist id="productList">
                 </datalist>
                 <button class='pink' id='submit'>
@@ -560,13 +561,43 @@
                 </div>
             </article>
 
-            <article id='ordersArticle'>
-                <!-- todo: adding data with handlebars -->
-            </article>
 
-            <article id='favouritesArticle'>
-                <!-- todo: adding data with handlebars -->
-            </article>
+
+            <script type='text/x-handlebars-template' id='favTemplate'>
+                {{#if favorites}} 
+                 <input type="checkbox" id='selectAll'>Избери всички продукти
+                  <button id='deleteAll'>Премахни</button>
+                  <table id='favTable'>
+                      {{#each favorites}}
+                      <tr>
+                          <td>
+                              <input type="checkbox">
+                          </td>
+                          <td class='items'>
+                              <img src="{{image_urls.91x121.0.url}}" width="91">
+                          </td>
+                          <td>
+                          <span>{{name}}</span>
+                          <br/>
+                          <span>{{brand}}</span>
+                          <br/>
+                          <span>Ограничено количество</span>
+                          <br/>
+                          <span>{{skus.0.sale_price}}</span>
+                          </td>
+                          <td>
+                              <button class='addInCart'>Добави в количката</button>
+                              <button class='deleteItem'>Премахни</button>
+                          </td>
+                      </tr>
+                      {{/each}}
+                  </table>
+                 {{/if}}
+                 {{#unless favorites}}
+                 <p style="font-size:25px; position:relative; top:30px; left:100px">Списъкът с продукти е празен!</p>
+                 <button style="float:right; position:relative; top:0px"onclick="(function(){location.replace('#home')})();">Разгледайте нашите продукти</button>
+                 {{/unless}}
+                  </script>
 
 
             <script type='text/template' id='adressessTemplate'>
@@ -733,14 +764,15 @@
         
                 <div id='info'>
                     <h2>{{brand}}</h2>
-                    <p>{{name}}</p>
+                    <p id='itemTitle'>{{name}}</p>
                     <h1>{{skus.0.sale_price}}</h1>
         
                     <p class='bold'>Размер</p>
                     <div>
                         {{#each sizeAndQuantity as |s|}}
-                        <input type='radio' name='size' {{s.0.size}}/> {{s.0.size}} {{/each}}
+                        <input type='radio'checked name='size' value="{{s.0.size}}"/> {{s.0.size}} {{/each}}
                     </div>
+                    <p>Количество: <input id='quantity' type='text' size='4'/></p>
         
                     <p>Материал: {{content.material}}</p>
                     <p>Произведено в: {{content.origin}}</p>
@@ -749,6 +781,7 @@
         
                     <button id='addToCart'>Добави в количката</button>
                     <button id='addFav'>&#x2661;</button>
+                    <p style="color:#9d0052">Този продукт вече е в любими</p>
         
                     <p class='bold'>30 ДНИ СРОК ЗА БЕЗПЛАТНО ВРЪЩАНЕ</p>
                     <p class='bold'>ПРОВЕРКА НА ПРАТКАТА</p>

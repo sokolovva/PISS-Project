@@ -1,12 +1,3 @@
-//при рефреш на страницата да се проверява дали има логнат ючър, за да не се показва ВХОД бутона
-$(function () {
-    $(window).on('load', function () {
-        if (sessionStorage.getItem('loggedUser')) {
-            var profile = $('<a href="#settings">&nbsp;<img src="assets/images/profileIcon.png"/><br/><span class="normalWhite">МОЯТ ПРОФИЛ</span></a>');
-            $('#profile').html(profile);
-        };
-    });
-})
 
 function logoutController() {
     $(function () {
@@ -18,25 +9,41 @@ function logoutController() {
 };
 
 function settingController(page) {
-    $(function () {
-
         var username = JSON.parse(sessionStorage.getItem('loggedUser'));
-
+        var favorites = username.favorites;
+        var cards = username.cards;
+        var address = username.addresses;
         if (username) {
-            var cards = username.cards;
-            var address = username.addresses;
-            if (page == 'cards') {
-                var cardTemplate = $('#cardsTemplate').text();
-                var cardPage = Handlebars.compile(cardTemplate);
-                $('#profileSection section').eq(1).html($(cardPage({ cards: cards })));
-            } else {
-                if (page == 'adresses') {
+            switch (page) {
+                case 'cards':
+                    var cardTemplate = $('#cardsTemplate').text();
+                    var cardPage = Handlebars.compile(cardTemplate);
+                    $('#profileSection section').eq(1).html($(cardPage({ cards: cards })));
+                    break;
+                case 'adresses':
                     var addressTemplate = $('#adressessTemplate').text();
                     var addressPage = Handlebars.compile(addressTemplate);
                     $('#profileSection section').eq(1).html($(addressPage({ address: address })));
-                } else {
-                    $('#profileSection section').eq(1).html($("#" + page + "Article").html());
-                }
+                    break;
+                case 'favourites':
+                   
+                        var favTemplate = $('#favTemplate').text();
+                        var favPage = Handlebars.compile(favTemplate);
+                        $('#profileSection section').eq(1).html($(favPage({ favorites: favorites })));
+                        
+                   
+                    break;
+                /* case 'orders':
+                var favoriteTemp = $('#favTemplate').text();
+                var favPage = Handlebars.compile(favTemplate);
+                $('#profileSection section').eq(1).html($(favPage({ favorites: favorites })));
+                break; */
+                case 'settings':
+                    $('#profileSection section').eq(1).html($("#settingsArticle").html());
+                    break;
+                default:
+                    $('#profileSection section').eq(1).html($("#settingsArticle").html());
+
             }
 
         } else {
@@ -45,11 +52,13 @@ function settingController(page) {
             return;
         }
 
+
         $('main').html($('#profileDiv').html());
         $('#profileDiv article').hide();
         $('main').html($('#profileDiv').html());
         $('#username').val(username.username);
         loadGeneralSettings(username);
+
 
         //editing or deleting existing card or address
         $('.editAddress, .editCard').on('click', editCardOrAddress);
@@ -63,7 +72,10 @@ function settingController(page) {
         $('#addCard').on('click', addCardorAddress);
         $('#addAddress').on('click', addCardorAddress);
 
-    })
+        //adding in cart or deleting item from favourites
+        $('.deleteItem').on('click', favouritesController);
+        $('.addInCart').on('click', favouritesController);
+    
 }
 
 function loadGeneralSettings(username) {
@@ -231,3 +243,23 @@ function addCardorAddress() {
         }
     })
 }
+
+
+function favouritesController(){
+    var user = JSON.parse(sessionStorage.getItem('loggedUser'));
+    
+    if($(this).attr('class')=='deleteItem'){    
+        var title=$(this).parent().prev().children().eq(0).text();
+        var product=productStorage.findItem(title);
+        if(userStorage.deleteFromFavourites(user.id, product)){
+            $(this).parent().parent().remove();
+        }
+
+    } else {
+
+    }
+    
+     
+
+}
+
