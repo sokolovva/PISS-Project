@@ -1,5 +1,16 @@
 $(function () {
+    function itemsHash(){
+        var pages = location.hash.split('=');
+        var page = pages[0].slice(1);
+        var item=pages[1];
+        if(page=='item'){
+            itemController(item);   
+        }
+        
+    }
     function router() {
+
+        itemsHash();
         var page = location.hash.slice(1);
 
         switch (page) {
@@ -12,9 +23,9 @@ $(function () {
             case 'help':
                 faqController();
                 break;
-            case 'women':
-            case 'men':
-                womenMenController(page);
+            case 'Women':
+            case 'Men':
+                productController(page);
                 break;
             case 'contact':
             case 'condition':
@@ -42,5 +53,6 @@ $(function () {
     }
 
     window.addEventListener('hashchange', router);
+    window.addEventListener('load', router);
     router();
 });

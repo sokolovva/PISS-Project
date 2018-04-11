@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="assets/styles/styles.css">
     <script src="node_modules/handlebars/dist/handlebars.min.js"></script>
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    
+
 
 
     <script src="js/productService.js"></script>
@@ -82,10 +82,10 @@
             <div id='categories'>
                 <ul>
                     <li>
-                        <a id="mainMenu-women" href="#women">ЖЕНИ</a>
+                        <a id="mainMenu-women" href="#Women">ЖЕНИ</a>
                     </li>
                     <li>
-                        <a id="mainMenu-men" href="#men">МЪЖЕ</a>
+                        <a id="mainMenu-men" href="#Men">МЪЖЕ</a>
                     </li>
                     <li>
                         <a id="mainMenu-brands" href="#brands">МАРКИ</a>
@@ -673,24 +673,23 @@
                 <br/>
                 <input type="checkbox" value='next' class="filters" name="brandFilter">NEXT
                 <br/>
-                <input type="checkbox" value='esprit' class="filters" name="brandFilter">Esprit
+                <input type="checkbox" value='ralph lauren' class="filters" name="brandFilter">Ralph Lauren
                 <br/>
 
                 <input type="checkbox" value='puma' class="filters" name="brandFilter">Puma
                 <br/>
 
-                <input type="checkbox" value='guess' class="filters" name="brandFilter">Guess
+                <input type="checkbox" value='hugo boss' class="filters" name="brandFilter">HUGO BOSS
                 <br/>
 
-                <input type="checkbox" value='calvinklein' class="filters" name="brandFilter">Calvin Klein
+                <input type="checkbox" value='derek lam 10 crosby' class="filters" name="brandFilter">Derek Lam 10 Crosby
                 <br/>
                 <br/>
             </form>
         </div>
 
-        <div id='womenSelections'></div>
-        <div id='menSelections'></div>
-        <div id='item'></div>
+        <div id='productSelections'></div>
+
     </div>
 
     <script type='text/template' id='itemsTemplate'>
@@ -698,7 +697,7 @@
                 {{#each items}}
                 <tr>
                     <td class='items'>
-                       <img src="{{url}}" width="250px"> 
+                       <img src="{{image_urls.300x400.0.url}}" width="250px"> 
                         <span>{{name}}</span> <br/>
                         <span>{{brand}}</span>
                     </td>
@@ -708,35 +707,79 @@
             </table>
     </script>
 
-    
+
 
     <script type='text/x-handlebars-template' id='itemTemplate'>
-       <div id='singleItem'>
-<div id='minImgs'>
-        {{#each image_urls.300x400 as |s|}}
-        <img src="{{s.url}}" height="150px"/>
+
+        <div id='singleItem'>
+                <div id='minImgs'>
+                    {{#each image_urls.300x400 as |s|}}
+                    <img src="{{s.url}}" height="150px" /> {{/each}}
+                </div>
         
-        {{/each}}
-    </div>
-
-    <div id='bigImg'>
-        <img src="{{image_urls.300x400.0.url}}" alt="">
-    </div>
-
-    <div id='info'></div>
-    <div>
-        <h1>{{brand}}</h1>
-        <p>{{name}}</p>
-        <p>{{skus.0.sale_price}}</p>
-        <p>ДОСТАВКА ДО 2-4 РАБОТНИ ДНИ</p>
-        <button id='addToCart'>Добави в количката</button>
-        <button id='addFav'>&#x2661;</button>
-
-        <p>30 ДНИ СРОК ЗА БЕЗПЛАТНО ВРЪЩАНЕ</p>
-        <p>ПРОВЕРКА НА ПРАТКАТА</p>
-    </div> 
-    </div>
+                <div id='bigImg'>
+                    <img src="{{image_urls.420x560.0.url}}" alt="">
+                </div>
+        
+        
+                <div id='info'>
+                    <h2>{{brand}}</h2>
+                    <p>{{name}}</p>
+                    <h1>{{skus.0.sale_price}}</h1>
+        
+                    <p class='bold'>Размер</p>
+                    <div>
+                        {{#each sizeAndQuantity as |s|}}
+                        <input type='radio' name='size' {{s.0.size}}/> {{s.0.size}} {{/each}}
+                    </div>
+        
+                    <p>Материал: {{content.material}}</p>
+                    <p>Произведено в: {{content.origin}}</p>
+        
+                    <p class='bold'>ДОСТАВКА ДО 2-4 РАБОТНИ ДНИ</p>
+        
+                    <button id='addToCart'>Добави в количката</button>
+                    <button id='addFav'>&#x2661;</button>
+        
+                    <p class='bold'>30 ДНИ СРОК ЗА БЕЗПЛАТНО ВРЪЩАНЕ</p>
+                    <p class='bold'>ПРОВЕРКА НА ПРАТКАТА</p>
+                </div>  
+                <div id='desc'>
+                    <button class='description'>ОПИСАНИЕ</button>
+        
+                    <button class='payment'>ДОСТАВКА И ПЛАЩАНЕ</button>
+        
+                    <button class='return'>ВРЪЩАНЕ</button>
+                    <div id='containter'></div>
+        
+                    <div class='hidden description'>
+                        {{content.description}}
+                    </div>
+                    <div class='hidden payment'>Доставка Поръчките доставяме чрез една от куриерските фирми (Европът, Еконт, Рапидо). Доставка до адрес: За поръчки
+                        над 89 лв. доставката е БЕЗПЛАТНА. За поръчки под 89 лв. таксата за доставка е 4 лв. Доставка до офис на
+                        Еконт: Ще изпратим пратката до най-близкия до вас офис на Еконт. Доставката е БЕЗПЛАТНА за поръчки над 65
+                        лв. За поръчки под 65 лв. таксата за доставка е 4 лв. Плащане Кредитна/дебитна карта – приемаме всички валидни
+                        банкови карти на MasterCard, Visa или Maestro (и American Express, в случай че е приложимо в съответната
+                        страна). Наложен платеж – плащането се извършва на куриера при доставката на продукта.
+                    </div>
+                    <div class='hidden return'> Искате да върнете цяла поръчка или само един продукт? Може да го направите лесно и безплатно в рамките на 30
+                        дни от получаване на пратката. За целта: Отидете в Профила си, изберете секция Връщане на продукти и следвайте
+                        указанията във формуляра за връщане. Всички връщания в секция Връщане на продукти в Моят профил, направени
+                        чрез попълване на Формуляра за връщане, са БЕЗПЛАТНИ и се осъществяват чрез нашите партньорски куриерски
+                        фирми. Вие избирате как да получите заплатената сума за върнатия продукт. В зависимост от метода на плащане,
+                        това може да стане по банков път (по ваша сметка или по сметката на вашата кредитна/дебитна карта) или чрез
+                        зареждане на ваучер за следваща покупка. Ако възникнат допълнителни въпроси, свържете се с нас на телефон
+                        0700 17 660 (на цената на един градски разговор).
+                    </div>
+        
+                </div>
+        
+            </div>
+        
     </script>
+
+
+
 
 
 </body>

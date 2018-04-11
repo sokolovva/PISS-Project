@@ -1,7 +1,7 @@
 body{
     width: 100%;
     font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
-  
+    height: 1600px;
 }
 
 *{
@@ -131,7 +131,7 @@ a>h1>span:last-child{
 }
 
 main{
-    height: 1200px;
+    height: 1400px;
     width: 78%;
     margin:auto;
    
@@ -139,6 +139,7 @@ main{
 
 
 footer{
+    position: relative;
     width: 100%;
     background-color:black;
     height: 470px;
@@ -446,9 +447,10 @@ display:none;
 #filters h1, h2{
     font-weight: bold;
     color:#9d0052;
+    font-size:20px
 }
 
-#menSelections, #womenSelections{
+#menSelections, #womenSelections, #productSelections{
     position: relative;
     top:160px;
     float:right;
@@ -516,7 +518,7 @@ display:none;
 }
 
 
-#womenSelections tr, #menSelections tr{
+#womenSelections tr, #menSelections tr, #productSelections tr{
    display:inline-block;
    width: 250px;
    margin:1.1em;
@@ -540,7 +542,7 @@ display:none;
     width:190px;
 }
 
-#womenSelections span, #menSelections span, #actualSelections span{
+#womenSelections span, #menSelections span, #productSelections span, #actualSelections span{
     display: inline-block;
     background-color:black;
     color:#9d0052;
@@ -569,11 +571,93 @@ display:none;
 }
 
 
-#singleItem{
-    width:76%;
-}
+
 
 #minImgs img{
+    border: 1px ridge;
+    margin:1em;
+}
+
+#minImgs{
+    width: 20%;
+    display: inline-block;
+    height: 700px;
+    
+}
+#bigImg{
     float: left;
-    display: block;
+    margin: 1em;
+    display: inline-block;
+    width: 40%;
+    height: 700px;
+}
+
+#info{
+    float: right;
+    display: inline-block;
+    width: 30%;
+    margin: 2em 2em 1em 0em;
+    height: 700px;
+}
+
+#desc button{
+
+}
+
+#singleItem{
+    position: relative;
+    height: 1100px;
+    top: 170px;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+#info button{
+    border: none;
+    background-color: #9d0052;
+    border-radius: 8%;
+    width: 120px;
+    height: 60px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+#info button:last-of-type{
+    position: relative;
+    top: 213px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#info h1{
+    font-weight: bold;
+    color:#9d0052;
+    border-top: 1px ridge;
+    border-bottom: 1px ridge;
+    padding:1em 0.2em;
+    margin:1em 0em;
+    font-size:2em;
+}
+
+#info p{
+    padding:0.5em;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+#desc button{
+    position: relative;
+    top: 0px;
+    margin: 1em 1em 2em 1em;
+    width: 300px;
+}
+
+#desc{
+    margin:3em;
+}
+
+.hidden{
+    display: none
 }

@@ -7,6 +7,13 @@ var productStorage = (function () {
         $.get('http://localhost/fashiondaysproject/json/products.json').then(function (data) {
             products = products.concat(JSON.parse(data));
             localStorage.setItem('products', JSON.stringify(products));
+            products.forEach(product => {
+                var random=Math.floor(Math.random()*50);
+                product.sizeAndQuantity = [
+                   [{'size':'S'},{'quantity':random}],
+                   [{'size':'M'},{'quantity':random}],
+                   [{'size':'L'},{'quantity':random}] 
+                ]});
         })
     } else {
         products = JSON.parse(localStorage.getItem('products'));
@@ -44,6 +51,15 @@ var productStorage = (function () {
 
 
 
+    ProductStorage.prototype.filterSelectedProducts = function (filters) {
+        var result = products.filter(function (prod) {
+            return (prod.categories.some(gender => gender == filters.gender) &&
+                ((filters.brand != undefined && filters.brand.length > 0) ? filters.brand.includes(prod.brand.toLowerCase()) : true) &&
+                ((filters.category != undefined && filters.category.length > 0) ? filters.category.includes(prod.category) : true));
+        });
+
+        return result;
+    };
 
 
     return new ProductStorage();
