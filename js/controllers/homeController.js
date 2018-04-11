@@ -72,9 +72,8 @@ function itemController() {
         event.preventDefault();
         var quantity = $('#productQuantity').val();
 
-        var userId = JSON.parse(sessionStorage.getItem('loggedUser')).id;
-
-        if(!!userId) {
+        if (sessionStorage.getItem('loggedUser') != null) {
+            var userId = JSON.parse(sessionStorage.getItem('loggedUser')).id;
             cartStorage.addCartItem(product, quantity);
         } else {
             alert('Трябва да се логнете, за да добавите продукт в кошницата!');

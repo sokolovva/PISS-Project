@@ -10,10 +10,10 @@ function logoutController() {
 
 function settingController(page) {
         var username = JSON.parse(sessionStorage.getItem('loggedUser'));
-        var favorites = username.favorites;
-        var cards = username.cards;
-        var address = username.addresses;
         if (username) {
+            var favorites = username.favorites;
+            var cards = username.cards;
+            var address = username.addresses;
             switch (page) {
                 case 'cards':
                     var cardTemplate = $('#cardsTemplate').text();
