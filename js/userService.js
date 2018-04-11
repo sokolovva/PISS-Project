@@ -4,7 +4,7 @@ var userStorage = (function () {
         this.username = username;
         this.password = password;
         this.id = UserStorage.nextId++;
-        this.basket = new CartStorage();
+        this.basket = cartStorage;
         this.favorites = [];
         this.orders = [];
         this.addresses = [];
@@ -34,13 +34,6 @@ var userStorage = (function () {
 
     UserStorage.nextId = 1;
 
-    UserStorage.prototype.addToBasket = function(user, title, size,quantity){
-        var user = this._users.find(u=>u.username==user.username);
-        var product=productStorage.findItem(title);
-        user.basket.addCartItem(product, size, quantity);
-        saveChanges();
-        sessionStorage.setItem('user', JSON.stringify(user));
-    }
 
     UserStorage.prototype.register = function (username, password) {
         if ((username.trim().length == 0) || (password.trim().length < 8)) {
@@ -307,7 +300,3 @@ var userStorage = (function () {
 
     return new UserStorage();
 })();
-
-userStorage.addAddress(1, 'petya', '094938', 'sofia', '1840', 'nishava 40');
-
-userStorage.addCard(1, 'petya sokolova', '43242424432', '12321');

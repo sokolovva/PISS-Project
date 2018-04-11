@@ -1,6 +1,6 @@
-var CartStorage = (function () {
+var cartStorage = (function () {
     function CartStorage() {
-       this._items=[];
+        this._items = [];
         this.total = 0;
     }
 
@@ -9,15 +9,17 @@ var CartStorage = (function () {
 
 
 
-    CartStorage.prototype.addCartItem = function (product, size, quantity) {
+    CartStorage.prototype.addCartItem = function (product, quantity) {
         // if ((product instanceof Product) && (quantity > 0)) {
-          if (quantity > 0) {
-       
+        if (quantity > 0) {
             var cartItem = new CartItem(product, quantity);
             this._items.push(cartItem);
 
             cartItem.cartItemTotal = this.calculateItemTotal(cartItem);
             this.total += cartItem.cartItemTotal;
+            sessionStorage.setItem('cart', JSON.stringify(this._items));
+            sessionStorage.setItem('total', JSON.stringify(this.total));
+            alert('Успешно добавихте продукта във вашата Количка!');
             return true;
         }
         return false;
@@ -34,6 +36,8 @@ var CartStorage = (function () {
 
             cartItem.cartItemTotal = this.calculateItemTotal(cartItem);
             this.total += cartItem.cartItemTotal;
+            sessionStorage.setItem('cart', JSON.stringify(this._items));
+            sessionStorage.setItem('total', JSON.stringify(this.total));
             return true;
         } else {
             throw new Error('there is no cartItem with ID' + itemId);
@@ -49,6 +53,8 @@ var CartStorage = (function () {
             this.total -= cartItem.cartItemTotal;
 
             this._items.splice(index, 1);
+            sessionStorage.setItem('cart', JSON.stringify(this._items));
+            sessionStorage.setItem('total', JSON.stringify(this.total));
             return true;
         } else {
             throw new Error('there is no cartItem with ID' + itemId);
@@ -59,11 +65,13 @@ var CartStorage = (function () {
     CartStorage.prototype.emptyCart = function () {
         this._items.length = 0;
         this.total = 0;
+        sessionStorage.setItem('cart', JSON.stringify(this._items));
+        sessionStorage.setItem('total', JSON.stringify(this.total));
     };
 
 
     CartStorage.prototype.calculateItemTotal = function(cartItem) {
-        return cartItem.quantity * cartItem.product.price;
+        return cartItem.quantity * cartItem.product.skus[0].sale_price;
     };
 
 
@@ -81,6 +89,5 @@ var CartStorage = (function () {
         this.id = CartStorage.nextId++;
     }
 
-    return CartStorage;
+    return new CartStorage();
 })();
-
