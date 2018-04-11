@@ -87,6 +87,7 @@ function itemController() {
         if(user){
             var title=$('#itemTitle').text();
             var product = productStorage.findItem(title);
+            $(this).css('background-color','#6495ED');
             if(!userStorage.addToFavorites(user.id, product)){
                 $(this).next().toggle();
             }
