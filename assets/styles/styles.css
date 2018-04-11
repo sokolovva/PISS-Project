@@ -529,10 +529,8 @@ display:none;
 }
 #actualSelections tr{
     display:inline-block;
-    width: 190px;
-    margin:0.5em;
+    width: 49%;
     text-align: center;
-    padding:0.5em;
     font-weight: bold;
     cursor: pointer;
 
@@ -558,7 +556,6 @@ display:none;
 #actualSelections div{
     width: 49%;
     display: inline-block;
-    border:1px solid black;
     height: 1000px;
     overflow: auto;
     margin:1em 0em;
@@ -693,6 +690,6 @@ display:none;
 
 #favTable span{
     position: relative;
-    top:-44px;
-    line-height: 1.5em;
+    top:0px;
+    line-height: 1em;
 }

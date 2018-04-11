@@ -252,6 +252,7 @@ function favouritesController(){
         var title=$(this).parent().prev().children().eq(0).text();
         var product=productStorage.findItem(title);
         if(userStorage.deleteFromFavourites(user.id, product)){
+            
             $(this).parent().parent().remove();
         }
 

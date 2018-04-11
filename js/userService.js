@@ -117,13 +117,13 @@ var userStorage = (function () {
         var user = this._users.find(user => user.id == userId);
         if (user) {
             if(user.favorites.length!=0){
-                var index=user.favorites.findIndex(p=>p.id==product.id);
-                user.favorites.splice(index,1);
-                localStorage.setItem('users', JSON.stringify(this._users));
-                sessionStorage.setItem('loggedUser', JSON.stringify(user));
-                return true;
+                
             }
-          
+            var index=user.favorites.findIndex(p=>p.id==product.id);
+            user.favorites.splice(index,1);
+            localStorage.setItem('users', JSON.stringify(this._users));
+            sessionStorage.setItem('loggedUser', JSON.stringify(user));
+            return true;
         }
 
         return false;

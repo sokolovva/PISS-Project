@@ -44,10 +44,10 @@ var productStorage = (function () {
 
 
     ProductStorage.prototype.changeQuantity = function (id, size, quantity) {
-        var product = products.find(product => product.id == id);
+        var product = products.find(p => p.id == id);
         var size = product.sizeAndQuantity.find(i => i.size == size);
-        if (Number(size[1].quantity) > Number(quantity)) {
-            Number(size[1].quantity) -= Number(quantity);
+        if (product.size[1].quantity > +quantity) {
+            product.size[1].quantity -= quantity;
             localStorage.setItem('products', JSON.stringify(products));
             return true;
         }

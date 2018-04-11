@@ -11,8 +11,8 @@ var CartStorage = (function () {
 
     CartStorage.prototype.addCartItem = function (product, size, quantity) {
         // if ((product instanceof Product) && (quantity > 0)) {
-         
-        if (quantity > 0 && productStorage.changeQuantity(product.id, size, quantity)) {
+          if (quantity > 0) {
+       
             var cartItem = new CartItem(product, quantity);
             this._items.push(cartItem);
 
