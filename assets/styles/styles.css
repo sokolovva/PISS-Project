@@ -734,3 +734,7 @@ display:none;
     font-size: 1em;
     cursor: pointer;
 }
+
+#cartTable .items {
+    cursor: pointer;
+}

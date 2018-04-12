@@ -14,4 +14,12 @@ function searchController() {
 
     var searchHTML = template({product: products});
     $('#productList').html(searchHTML);
-};
+
+    $('#submit').on('click', function () {
+        event.preventDefault();
+
+        var title = $('#searchItem').val();
+        itemController(title);
+        $('#searchItem').val('');
+    });
+}

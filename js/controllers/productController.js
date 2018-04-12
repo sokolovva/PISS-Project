@@ -77,5 +77,8 @@ function productController(page) {
         $('#productSelections').html(productsHTML);
       
     });
-    $('.items').on('click', itemController);
+    $('.items').on('click', function () {
+        var title = $(this).children().eq(1).text();
+        itemController(title);
+    });
 }
