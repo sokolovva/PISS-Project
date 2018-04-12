@@ -34,6 +34,11 @@ function cartController() {
             location.replace('#home');
         });
 
+        $('.items').on('click', function () {
+            var title = $(this).closest('tr').children().eq(1).children().eq(0).text();
+            console.log(title);
+            itemController(title);
+        });
 
     } else {
         var emptyCartText = ' <p style="font-size:25px; position:relative; top:160px; left:480px">Вашата количка е празна!</p>\n' +
