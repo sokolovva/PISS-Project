@@ -14,6 +14,7 @@ function settingController(page) {
         var favorites = username.favorites;
         var cards = username.cards;
         var address = username.addresses;
+        var orders = username.orders;
         switch (page) {
             case 'cards':
                 var cardTemplate = $('#cardsTemplate').text();
@@ -30,13 +31,12 @@ function settingController(page) {
                 var favTemplate = $('#favTemplate').text();
                 var favPage = Handlebars.compile(favTemplate);
                 $('#profileSection section').eq(1).html($(favPage({ favorites: favorites })));
-
                 break;
-            /* case 'orders':
-            var favoriteTemp = $('#favTemplate').text();
-            var favPage = Handlebars.compile(favTemplate);
-            $('#profileSection section').eq(1).html($(favPage({ favorites: favorites })));
-            break; */
+            case 'orders':
+                var ordTemp = $('#ordersTemplate').text();
+                var ordPage = Handlebars.compile(ordTemp);
+                $('#profileSection section').eq(1).html($(ordPage({ orders: orders })));
+                break;
             case 'settings':
                 $('#profileSection section').eq(1).html($("#settingsArticle").html());
                 break;
@@ -246,11 +246,11 @@ function addCardorAddress() {
 
 function favouritesController() {
     var user = JSON.parse(sessionStorage.getItem('loggedUser'));
-    
-    if($(this).attr('class')=='deleteItem'){    
-        var title=$(this).parent().prev().children().eq(0).text();
-        var product=productStorage.findItem(title);
-        if(userStorage.deleteFromFavourites(user.id, product)){
+
+    if ($(this).attr('class') == 'deleteItem') {
+        var title = $(this).parent().prev().children().eq(0).text();
+        var product = productStorage.findItem(title);
+        if (userStorage.deleteFromFavourites(user.id, product)) {
             $(this).parent().parent().remove();
         }
 

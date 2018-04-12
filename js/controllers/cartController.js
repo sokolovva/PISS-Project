@@ -30,7 +30,7 @@ function cartController() {
             var userId = JSON.parse(sessionStorage.getItem('loggedUser')).id;
             userStorage.purchase(userId);
             cartStorage.emptyCart();
-            alert('Вашата поръчка е осъществена успещно!');
+            alert('Вашата поръчка е осъществена успешно!');
             location.replace('#home');
         });
 

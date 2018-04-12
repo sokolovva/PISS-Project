@@ -81,6 +81,7 @@ var userStorage = (function () {
         if (index != -1) {
             var user = this._users[index];
             var newOrder = JSON.parse(sessionStorage.getItem('cart'));
+            //newOrder.date=new Date().toJSON().slice(0,10).replace(/-/g,'/');
             user.orders.push(newOrder);
             sessionStorage.setItem('loggedUser', JSON.stringify(user));
             localStorage.setItem('users', JSON.stringify(this._users));

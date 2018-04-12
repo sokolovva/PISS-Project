@@ -591,6 +591,43 @@
                   </script>
 
 
+
+
+                  <script type='text/x-handlebars-template' id='ordersTemplate'>
+                    {{#if orders}}
+                      <table id='ordTable'>
+                          <tr>
+                              <th colspan=2>Продукт</th>
+                              <th>Количество</th>
+                              <th>Общо цена</th>
+                          </tr>
+                          {{#each orders as |o|}}
+                          {{#each o}}   
+                          <tr>
+                              <td class='items'>
+                                  <img src="{{product.image_urls.91x121.0.url}}" width="91">
+                              </td>
+                              <td>
+                              <span>{{product.name}}</span>
+                              <br/>
+                              <span>{{product.brand}}</span>
+                              <br/>
+                              <span>{{product.skus.0.sale_price}}</span>
+                              </td>
+                              <td>{{quantity}}</td>
+                              <td>{{cartItemTotal}}</td>
+                            </tr>
+                          {{/each}}
+                          {{/each}}
+                      </table>
+                     {{/if}}
+                     {{#unless orders}}
+                     <p style="font-size:25px; position:relative; top:30px; left:100px">Все още нямате поръчки!</p>
+                     <button style="float:right; position:relative; top:0px"onclick="(function(){location.replace('#home')})();"> Започнете с пазаруването!</button>
+                     {{/unless}}
+                      </script>
+
+
             <script type='text/template' id='adressessTemplate'>
                 <div id='Address'>
                     <h1>АДРЕСИ<h1>

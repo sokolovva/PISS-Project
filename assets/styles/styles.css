@@ -663,7 +663,7 @@ display:none;
     display: none;
 }
 
-#favTable{
+#favTable, #ordTable{
     width: 75%;
 }
 
@@ -683,12 +683,12 @@ display:none;
     width: 500px; 
 }
 
-#favTable img{
+#favTable img, #ordTable img{
     position: relative;
     top: 50px;
 }
 
-#favTable span{
+#favTable span, #ordTable span{
     position: relative;
     top:0px;
     line-height: 1em;
