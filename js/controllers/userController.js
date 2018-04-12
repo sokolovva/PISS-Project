@@ -1,3 +1,7 @@
+$(function () {
+
+
+})
 
 function logoutController() {
     $(function () {
@@ -9,37 +13,42 @@ function logoutController() {
 };
 
 function settingController(page) {
-    var username = JSON.parse(sessionStorage.getItem('loggedUser'));
-
     $('main').html($('#profileDiv').html());
     $('#profileDiv article').hide();
-    
+    var username = JSON.parse(sessionStorage.getItem('loggedUser'));
+
     if (username) {
         var favorites = username.favorites;
         var cards = username.cards;
         var address = username.addresses;
         var orders = username.orders;
+
+        var favTemplate = $('#favTemplate').text();
+        var favPage = Handlebars.compile(favTemplate);
+        var addressTemplate = $('#adressessTemplate').text();
+        var addressPage = Handlebars.compile(addressTemplate);
+        var cardTemplate = $('#cardsTemplate').text();
+        var cardPage = Handlebars.compile(cardTemplate);
+        var ordTemp = $('#ordersTemplate').text();
+        var ordPage = Handlebars.compile(ordTemp);
+
+        cardPage = $(cardPage({ cards: cards }));
+        addressPage = $(addressPage({ address: address }));
+        favPage = $(favPage({ favorites: favorites }));
+        ordPage = $(ordPage({ orders: orders }));
+
         switch (page) {
             case 'cards':
-                var cardTemplate = $('#cardsTemplate').text();
-                var cardPage = Handlebars.compile(cardTemplate);
-                $('#profileSection section').eq(1).html($(cardPage({ cards: cards })));
+                $('#profileSection section').eq(1).html(cardPage);
                 break;
             case 'adresses':
-                var addressTemplate = $('#adressessTemplate').text();
-                var addressPage = Handlebars.compile(addressTemplate);
-                $('#profileSection section').eq(1).html($(addressPage({ address: address })));
+                $('#profileSection section').eq(1).html(addressPage);
                 break;
             case 'favourites':
-
-                var favTemplate = $('#favTemplate').text();
-                var favPage = Handlebars.compile(favTemplate);
-                $('#profileSection section').eq(1).html($(favPage({ favorites: favorites })));
+                $('#profileSection section').eq(1).html(favPage);
                 break;
             case 'orders':
-                var ordTemp = $('#ordersTemplate').text();
-                var ordPage = Handlebars.compile(ordTemp);
-                $('#profileSection section').eq(1).html($(ordPage({ orders: orders })));
+                $('#profileSection section').eq(1).html(ordPage);
                 break;
             case 'settings':
                 $('#profileSection section').eq(1).html($("#settingsArticle").html());
@@ -77,6 +86,30 @@ function settingController(page) {
     $('.deleteItem').on('click', favouritesController);
     $('.addInCart').on('click', favouritesController);
 
+    $('#selectAll').on('click', function () {
+        if (this.checked) {
+            $(':checkbox').each(function () {
+                this.checked = true;
+            });
+        } else {
+            $(':checkbox').each(function () {
+                this.checked = false;
+            });
+        }
+    });
+
+    $('#deleteAll').on('click', function () {
+        var checkboxes = $('#favTable input:checked');
+
+        if (checkboxes.length != 0) {
+
+
+        }
+    })
+
+
+
+
 }
 
 function loadGeneralSettings(username) {
@@ -98,11 +131,13 @@ function changeSettings(event) {
     var gender = $('input[name=gender]:checked').val();
 
     if (userStorage.changeSettings(firstName, surname, newUsername, gender)) {
-        $('#firstName,#surname, #username').val('');
         alert("Вашите данни бяха променени успешно!");
+
     } else {
         alert("Непопълнени задължителни полета!");
     }
+
+    $('#firstName, #surname, #username').val('');
     var username = JSON.parse(sessionStorage.getItem('loggedUser'));
     $('#username').val(username.username);
     loadGeneralSettings(username);
@@ -263,10 +298,23 @@ function favouritesController() {
             userStorage.deleteFromFavourites(user.id, product)
             $(this).parent().parent().remove();
         }
-
     }
 
-
+    $('#selectAll').on('click', function () {
+        if (this.checked) {
+            $(':checkbox').each(function () {
+                this.checked = true;
+            });
+        } else {
+            $(':checkbox').each(function () {
+                this.checked = false;
+            });
+        }
+    });
 
 }
+
+
+
+
 
