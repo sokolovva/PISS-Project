@@ -30,7 +30,7 @@ $(function () {
             case 'logout':
                 logoutController();
                 break;
-                case 'cart':
+            case 'cart':
                 cartController();
                 break;
             case 'settings':

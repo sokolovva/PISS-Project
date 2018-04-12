@@ -71,7 +71,7 @@ var cartStorage = (function () {
 
 
     CartStorage.prototype.calculateItemTotal = function(cartItem) {
-        return cartItem.quantity * cartItem.product.skus[0].sale_price;
+        return +((cartItem.quantity * cartItem.product.skus[0].sale_price).toFixed(2));
     };
 
 

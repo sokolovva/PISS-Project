@@ -80,9 +80,9 @@ var userStorage = (function () {
 
         if (index != -1) {
             var user = this._users[index];
-            var newOrder = JSON.parse(JSON.stringify(user.basket));
+            var newOrder = JSON.parse(sessionStorage.getItem('cart'));
             user.orders.push(newOrder);
-            user.basket.emptyCart();
+            sessionStorage.setItem('loggedUser', JSON.stringify(user));
             localStorage.setItem('users', JSON.stringify(this._users));
         }
     };
