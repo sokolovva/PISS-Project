@@ -75,6 +75,11 @@ function productController(page) {
 
         var productsHTML = productsTemplate({items: products});
         $('#productSelections').html(productsHTML);
+
+        $('.items').on('click', function () {
+            var title = $(this).children().eq(1).text();
+            itemController(title);
+        });
       
     });
     $('.items').on('click', function () {
