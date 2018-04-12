@@ -100,7 +100,6 @@ function settingController(page) {
 
     $('#deleteAll').on('click', function () {
         var checkboxes = $('#favTable input:checked');
-
         if (checkboxes.length != 0) {
 
 
