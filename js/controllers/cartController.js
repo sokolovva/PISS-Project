@@ -1,12 +1,14 @@
 function cartController() {
     if ((sessionStorage.getItem('cart') != null) && (JSON.parse(sessionStorage.getItem('cart')).length > 0)) {
         var products = JSON.parse(sessionStorage.getItem('cart'));
+        var total = JSON.parse(sessionStorage.getItem('total'));
 
         var cartSource = $('#cartTemplate').html();
         var cartTemplate = Handlebars.compile(cartSource);
 
         var cartHTML = cartTemplate({item: products});
         $('main').html(cartHTML);
+        $('#totalCost').text(total);
 
 
         $('input.changeQuantity').on('change',function(){
