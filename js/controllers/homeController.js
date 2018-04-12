@@ -39,16 +39,19 @@ function homeController() {
         items = random.slice();
 
         $('#actualSelections div').eq(1).append($(selectionsPage({ items: items })));
-        $('.items').on('click', itemController);
+        $('.items').on('click', function () {
+            var title = $(this).children().eq(1).text();
+            itemController(title);
+        });
     })
 }
 
 
 
 
-function itemController() {
+function itemController(title) {
     
-    var title=$(this).children().eq(1).text();
+    // var title=$(this).children().eq(1).text();
     var product = productStorage.findItem(title);
     location.replace('#item='+product.name);
 
