@@ -10,6 +10,10 @@ function logoutController() {
 
 function settingController(page) {
     var username = JSON.parse(sessionStorage.getItem('loggedUser'));
+
+    $('main').html($('#profileDiv').html());
+    $('#profileDiv article').hide();
+    
     if (username) {
         var favorites = username.favorites;
         var cards = username.cards;
@@ -52,8 +56,6 @@ function settingController(page) {
     }
 
 
-    $('main').html($('#profileDiv').html());
-    $('#profileDiv article').hide();
     $('main').html($('#profileDiv').html());
     $('#username').val(username.username);
     loadGeneralSettings(username);
@@ -255,6 +257,12 @@ function favouritesController() {
         }
 
     } else {
+        var title = $(this).parent().prev().children().eq(0).text();
+        var product = productStorage.findItem(title);
+        if (cartStorage.addCartItem(product, 1)) {
+            userStorage.deleteFromFavourites(user.id, product)
+            $(this).parent().parent().remove();
+        }
 
     }
 
