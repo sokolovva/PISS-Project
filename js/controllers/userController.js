@@ -246,12 +246,11 @@ function addCardorAddress() {
 
 function favouritesController() {
     var user = JSON.parse(sessionStorage.getItem('loggedUser'));
-
-    if ($(this).attr('class') == 'deleteItem') {
-        var title = $(this).parent().prev().children().eq(0).text();
-        var product = productStorage.findItem(title);
-        if (userStorage.deleteFromFavourites(user.id, product)) {
-
+    
+    if($(this).attr('class')=='deleteItem'){    
+        var title=$(this).parent().prev().children().eq(0).text();
+        var product=productStorage.findItem(title);
+        if(userStorage.deleteFromFavourites(user.id, product)){
             $(this).parent().parent().remove();
         }
 

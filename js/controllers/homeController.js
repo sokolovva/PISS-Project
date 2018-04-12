@@ -73,10 +73,6 @@ function itemController() {
         var quantity = $('#productQuantity').val();
 
         if (sessionStorage.getItem('loggedUser') != null) {
-            if(quantity==''){
-                $(this).prev().show();
-                return; 
-            }
             var userId = JSON.parse(sessionStorage.getItem('loggedUser')).id;
             cartStorage.addCartItem(product, quantity);
         } else {
