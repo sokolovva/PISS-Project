@@ -69,7 +69,7 @@ var productStorage = (function () {
                 ((filters.brand != undefined && filters.brand.length > 0) ? filters.brand.includes(prod.brand.toLowerCase()) : true) &&
                 ((filters.category != undefined && filters.category.length > 0) ? filters.category.includes(prod.category) : true));
         });
-
+        
         return result;
     };
 
