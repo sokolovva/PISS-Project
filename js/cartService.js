@@ -16,7 +16,7 @@ var cartStorage = (function () {
             this._items.push(cartItem);
 
             cartItem.cartItemTotal = this.calculateItemTotal(cartItem);
-            this.total += cartItem.cartItemTotal;
+            this.total += +(cartItem.cartItemTotal.toFixed(2));
             sessionStorage.setItem('cart', JSON.stringify(this._items));
             sessionStorage.setItem('total', JSON.stringify(this.total));
             alert('Успешно добавихте продукта във вашата Количка!');
@@ -31,7 +31,7 @@ var cartStorage = (function () {
 
         if (index != -1) {
             var cartItem = this._items[index];
-            this.total -= cartItem.cartItemTotal;
+            this.total -= +(cartItem.cartItemTotal.toFixed(2));
             cartItem.quantity = newQuantity;
 
             cartItem.cartItemTotal = this.calculateItemTotal(cartItem);
@@ -50,7 +50,7 @@ var cartStorage = (function () {
 
         if (index != -1) {
             var cartItem = this._items[index];
-            this.total -= cartItem.cartItemTotal;
+            this.total -= +(cartItem.cartItemTotal.toFixed(2));
 
             this._items.splice(index, 1);
             sessionStorage.setItem('cart', JSON.stringify(this._items));
@@ -71,7 +71,7 @@ var cartStorage = (function () {
 
 
     CartStorage.prototype.calculateItemTotal = function(cartItem) {
-        return cartItem.quantity * cartItem.product.skus[0].sale_price;
+        return +((cartItem.quantity * cartItem.product.skus[0].sale_price).toFixed(2));
     };
 
 

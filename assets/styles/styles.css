@@ -208,7 +208,7 @@ footer>div{
     margin: 1em 0em;
 }
 
-#mainSection{
+#mainSection, #cartSection{
     position: relative;
     top:140px;
     text-decoration: underline;
@@ -692,4 +692,45 @@ display:none;
     position: relative;
     top:0px;
     line-height: 1em;
+}
+
+#cartTable td {
+    padding: 1em;
+}
+
+#cartTable caption {
+    margin: 1em 1em 2em;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+#cartTable {
+    margin: auto;
+}
+
+#cartTable button{
+    position: relative;
+    top:0px;
+    float:right;
+    background-color: #9d0052;
+    font-weight: bold;
+    border-radius: 8%;
+    width: 100px;
+    height: 40px;
+    margin:0.2em;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+#purchaseBut{
+    position: relative;
+    top:0px;
+    background-color: cornflowerblue;
+    font-weight: bold;
+    border-radius: 8%;
+    width: 600px;
+    height: 40px;
+    margin:0.2em;
+    font-size: 1em;
+    cursor: pointer;
 }

@@ -23,6 +23,7 @@
     <script src="js/controllers/userController.js"></script>
     <script src="js/controllers/productController.js"></script>
     <script src="js/controllers/searchController.js"></script>
+    <script src="js/controllers/cartController.js"></script>
 </head>
 
 <body>
@@ -554,7 +555,7 @@
 
 
             <script type='text/x-handlebars-template' id='favTemplate'>
-                {{#if favorites}} 
+                {{#if favorites}}
                  <input type="checkbox" id='selectAll'>Избери всички продукти
                   <button id='deleteAll'>Премахни</button>
                   <table id='favTable'>
@@ -626,7 +627,7 @@
                                     <th>Име</th>
                                     <th>Номер на карта</th>
                                     <th>Валидна до</th>
-                                    <th colspan="2"></th>    
+                                    <th colspan="2"></th>
                                     </tr>
                             {{#each cards}}
                             <tr>
@@ -727,12 +728,12 @@
                 {{#each items}}
                 <tr>
                     <td class='items'>
-                       <img src="{{image_urls.300x400.0.url}}" width="250px"> 
+                       <img src="{{image_urls.300x400.0.url}}" width="250px">
                         <span>{{name}}</span> <br/>
                         <span>{{brand}}</span>
                     </td>
                 </tr>
-                {{/each}}  
+                {{/each}}
 
             </table>
     </script>
@@ -746,12 +747,12 @@
                     {{#each image_urls.300x400 as |s|}}
                     <img src="{{s.url}}" height="150px" /> {{/each}}
                 </div>
-        
+
                 <div id='bigImg'>
                     <img src="{{image_urls.420x560.0.url}}" alt="">
                 </div>
-        
-        
+
+
                 <div id='info'>
                     <h2>{{brand}}</h2>
                     <p id='itemTitle'>{{name}}</p>
@@ -759,33 +760,33 @@
                     <p class='bold'>Изберете количество:
                         <input class="bold" id="productQuantity" type="number" name="quantity" min="1" max="10" value="1">
                     </p>
-        
+
                     <p class='bold'>Размер</p>
                     <div>
                         {{#each sizeAndQuantity as |s|}}
                         <input type='radio'checked name='size' value="{{s.0.size}}"/> {{s.0.size}} {{/each}}
                     </div>
                     <!--<p>Количество: <input id='quantity' type='text' size='4'/></p>-->
-        
+
                     <p>Материал: {{content.material}}</p>
                     <p>Произведено в: {{content.origin}}</p>
-        
+
                     <p class='bold'>ДОСТАВКА ДО 2-4 РАБОТНИ ДНИ</p>
                     <button id='addToCart'>Добави в количката</button>
                     <button id='addFav'>&#x2661;</button>
                     <p style="color:#9d0052">Този продукт вече е в любими</p>
-        
+
                     <p class='bold'>30 ДНИ СРОК ЗА БЕЗПЛАТНО ВРЪЩАНЕ</p>
                     <p class='bold'>ПРОВЕРКА НА ПРАТКАТА</p>
-                </div>  
+                </div>
                 <div id='desc'>
                     <button class='description'>ОПИСАНИЕ</button>
-        
+
                     <button class='payment'>ДОСТАВКА И ПЛАЩАНЕ</button>
-        
+
                     <button class='return'>ВРЪЩАНЕ</button>
                     <div id='containter'></div>
-        
+
                     <div class='hidden description'>
                         {{content.description}}
                     </div>
@@ -805,14 +806,62 @@
                         зареждане на ваучер за следваща покупка. Ако възникнат допълнителни въпроси, свържете се с нас на телефон
                         0700 17 660 (на цената на един градски разговор).
                     </div>
-        
+
                 </div>
-        
+
             </div>
-        
+
     </script>
 
 
+    <script type='text/x-handlebars-template' id='cartTemplate'>
+        <section id="cartSection">
+            <table id='cartTable'>
+                <caption>Вашата количка</caption>
+                <thead>
+                    <tr>
+                        <th colspan="2"></th>
+                        <th>Премахни</th>
+                        <th>Цена за артикул</th>
+                        <th>Количество</th>
+                        <th>Цена общо</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each item}}
+                    <tr id="{{id}}">
+                        <td class='items'>
+                            <img src="{{product.image_urls.91x121.0.url}}" width="91">
+                        </td>
+                        <td>
+                            <span class="items">{{product.name}}</span>
+                            <br/>
+                            <span class="items">{{product.brand}}</span>
+                        </td>
+                        <td>
+                            <button class='deleteItem'>Премахни</button>
+                        </td>
+                        <td>
+                            <span>{{product.skus.0.sale_price}}</span>
+                        </td>
+                        <td>
+                            <input class="changeQuantity" type="number" min="1" value="{{quantity}}"/>
+                        </td>
+                        <td>
+                            <span>{{cartItemTotal}}</span>
+                        </td>
+                    </tr>
+                    {{/each}}
+                    <tr>
+                        <td>Общо</td>
+                        <td colspan="4"></td>
+                        <td id="totalCost"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button id="purchaseBut">Закупи</button>
+        </section>
+    </script>
 
 
 

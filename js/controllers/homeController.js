@@ -70,7 +70,7 @@ function itemController() {
 
     $('#addToCart').on('click', function (event) {
         event.preventDefault();
-        var quantity = $('#productQuantity').val();
+        var quantity = parseInt($('#productQuantity').val());
 
         if (sessionStorage.getItem('loggedUser') != null) {
             var userId = JSON.parse(sessionStorage.getItem('loggedUser')).id;
