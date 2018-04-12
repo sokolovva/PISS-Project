@@ -15,7 +15,7 @@ function searchController() {
     var searchHTML = template({product: products});
     $('#productList').html(searchHTML);
 
-    $('#submit').on('click', function () {
+    $('#searchByTitle').on('click', function () {
         event.preventDefault();
 
         var title = $('#searchItem').val();

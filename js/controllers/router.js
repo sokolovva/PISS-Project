@@ -49,14 +49,14 @@ $(function () {
     window.addEventListener('load', router);
     router();
     searchController();
-    
-    $('#searchByTitle').on('click', function(){
-        var title = $(this).parent().children().eq(0).val();
-        var product = productStorage.findItem(title);
-        var itemTemplate = $('#itemTemplate').text();
-        var itemPage = Handlebars.compile(itemTemplate);
-        $('main').html(itemPage(product));
-    })
+    //
+    // $('#searchByTitle').on('click', function(){
+    //     var title = $(this).parent().children().eq(0).val();
+    //     var product = productStorage.findItem(title);
+    //     var itemTemplate = $('#itemTemplate').text();
+    //     var itemPage = Handlebars.compile(itemTemplate);
+    //     $('main').html(itemPage(product));
+    // })
 
 });
 
